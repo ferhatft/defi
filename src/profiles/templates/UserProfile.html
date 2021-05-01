@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+
+
+<!-- start page title section -->
+<section class="big-section bg-extra-dark-gray wow fadeIn">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-12 col-lg-2 margin-five-top d-lg-block">
+                {% if user.is_authenticated %}
+                <a href="{% url 'UpdateUserprofile' %} "
+                    class="btn btn-medium btn-transparent-white text-medium border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Güncelle</a>
+                {% endif %}
+                <div class="separator-line-horrizontal-full bg-deep-pink margin-10px-bottom"></div>
+            </div>
+            <div
+                class="col-12 col-lg-8 offset-lg-2 small-screen margin-three-top md-margin-two-top d-flex align-items-end">
+                <div>
+                    <img src="images/single-project-05-img1.png" class="margin-five-bottom" alt="" />
+                    <h3 class="alt-font text-white-2 margin-six-bottom md-margin-30px-bottom width-100"> {{userprofile}}
+                    </h3>
+                    <span
+                        class="text-large alt-font width-80 d-block font-weight-300 margin-20px-bottom sm-width-100"> {% if userprofile.abaout %}
+                        {{userprofile.abaout}}
+                        {% else %}
+                         <a href="{% url 'UpdateUserprofile' %} "
+                    class="btn btn-medium btn-transparent-white text-medium border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Hakkımda Ekle</a>
+                        {% endif %} 
+
+                    </span>
+                    <span class="alt-font text-white-2 text-extra-small font-weight-300">
+                        {% for tag in top_3  %}
+                        {{tag}} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        {% endfor %}
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title section -->
+<!-- start parallax section -->
+<section
+    class="wow fadeIn no-padding parallax one-fifth-screen md-height-500px sm-height-350px background-position-x-50"
+    data-stellar-background-ratio="0.4" {% if profileimage %}
+    style="background-image: url('{{userprofile.profileimage.url}}')" {% else %}
+    style="background-image: url('{{profile_image_url}}')">
+    {% endif %} >
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+    </div>
+</section>
+<!-- end parallax section -->
+
+
+
+<!-- start counters style 05 section -->
+<section class="wow fadeIn bg-light-gray">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-7 text-center margin-100px-bottom sm-margin-40px-bottom">
+                <div class="position-relative overflow-hidden w-100">
+                    <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase">Tüm geçmiş
+                        yazılar</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- counter box item -->
+            <div
+                class="col-12 col-lg-4 col-md-6 md-margin-five-bottom md-padding-ten-left sm-padding-15px-left sm-margin-30px-bottom text-center wow fadeInDown">
+                <h5 class="text-extra-dark-gray font-weight-600 m-0 timer  alt-font" data-speed="2000"
+                    data-to="{{countdictionary}}"> {{countdictionary}}
+                </h5>
+                <span class="d-block margin-three-bottom">Sözlük Paylaşımı</span>
+                <div class="separator-line-verticle-large bg-deep-pink d-inline-block"></div>
+            </div>
+            <!-- end counter box item -->
+            <!-- counter box item -->
+            <div class="col-12 col-lg-4 col-md-6 md-margin-five-bottom md-padding-ten-left sm-padding-15px-left sm-margin-30px-bottom text-center wow fadeInDown"
+                data-wow-delay="0.2s">
+                <h5 class="text-extra-dark-gray font-weight-600 m-0 timer  alt-font" data-speed="2000"
+                    data-to="{{countinformation}}">{{countinformation}}</h5>
+                <span class="d-block margin-three-bottom">Bilgi Paylaşımı</span>
+                <div class="separator-line-verticle-large bg-deep-pink d-inline-block"></div>
+            </div>
+            <!-- end counter box item -->
+            <!-- counter box item -->
+            <div class="col-12 col-lg-4 col-md-6 sm-margin-seven-bottom md-padding-ten-left sm-padding-15px-left sm-margin-30px-bottom text-center  wow fadeInDown"
+                data-wow-delay="0.4s">
+                <h5 class="text-extra-dark-gray font-weight-600 m-0 timer  alt-font" data-speed="2000" data-to="875">875
+                </h5>
+                <span class="d-block margin-three-bottom">Haber Paylaşımı</span>
+                <div class="separator-line-verticle-large bg-deep-pink d-inline-block"></div>
+            </div>
+            <!-- end counter box item -->
+
+            <!-- end counter box item -->
+        </div>
+    </div>
+</section>
+<!-- end counters style 05 section -->
+
+<style>
+    @media (min-width: 768px) {
+        .positon-profile-tab {
+            position: sticky !important;
+            top: 65px;
+        }
+
+    }
+</style>
+
+<!-- start tab style 04 section -->
+<section style="overflow: visible !important;" class="wow fadeIn bg-light-gray pt-0">
+    <div class="container tab-style4">
+        <div class="row align-items-start">
+
+            <div class="col-12 col-lg-2 col-md-3 pr-0  position-relative positon-profile-tab z-index-1">
+                <!-- start tab navigation -->
+                <ul class="nav nav-tabs alt-font text-uppercase text-small font-weight-600">
+                    <li class="nav-item"><a class="nav-link active" href="#tab-four1" data-toggle="tab">DefiSözlük</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#tab-four2" data-toggle="tab">DefiBİlgi</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#tab-four3" data-toggle="tab">DefiHaber</a></li>
+                    {% comment %} <li class="nav-item"><a class="nav-link" href="#tab-four4"
+                            data-toggle="tab">Brainstorming</a> {% endcomment %}
+                    </li>
+                </ul>
+                <!-- end tab navigation -->
+            </div>
+
+            <div class="col-12 col-lg-10 col-md-9 pl-0">
+                <div class="tab-content">
+                    <!-- start tab content -->
+                    <div class="tab-pane med-text fade in active show" id="tab-four1">
+
+                        <!-- start section -->
+                        <section class="wow fadeIn pt-0">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <main class="col-12 col-lg-9 right-sidebar md-padding-15px-lr">
+
+                                        {% if dictionary %}
+
+                                        {% for obj in dictionary  %}
+                                        <!-- start post item -->
+                                        <div
+                                            class="blog-post-content margin-60px-bottom padding-60px-bottom d-inline-block border-bottom border-color-extra-light-gray md-margin-30px-bottom md-padding-30px-bottom text-center text-md-left md-no-border">
+                                            <div class="row no-gutters align-items-center">
+                                                <div
+                                                    class="col-12 col-lg-5 blog-image md-margin-30px-bottom sm-margin-20px-bottom margin-45px-right md-no-margin-right">
+                                                    <a href="{{obj.get_absolute_url}}"><img
+                                                            src="{% static 'defi/images/about-img12.jpg' %}" alt=""></a>
+                                                </div>
+                                                <div class="col-12 col-lg-6 blog-text">
+                                                    <div class="content margin-20px-bottom md-no-padding-left ">
+                                                        <a href="{{obj.get_absolute_url}}"
+                                                            class="text-extra-dark-gray margin-5px-bottom alt-font text-extra-large font-weight-600 d-inline-block">
+                                                            {{obj.title}} </a>
+                                                        <div
+                                                            class="text-medium-gray text-extra-small margin-15px-bottom text-uppercase alt-font">
+                                                            <span><a href="/" class="text-medium-gray"> {{obj.author}}
+                                                                </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>
+                                                                {{obj.created_date.date}} </span>&nbsp;&nbsp;&nbsp;
+                                                        </div>
+                                                        <p class="m-0 width-95">{{obj.main_context|truncatewords:25 }}
+                                                        </p>
+                                                    </div>
+                                                    <a class="btn btn-very-small btn-dark-gray text-uppercase"
+                                                        href="{% url 'dictionary_update' slug=obj.title|slugify %}">Düzenle</a>
+                                                    <a class="btn btn-very-small btn-dark-gray text-uppercase"
+                                                        href="{% url 'dictionary_delete' slug=obj.title|slugify %}">Kaldır</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end post item -->
+                                        {% endfor %}
+
+                                        {% endif %}
+                                    </main>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- end section -->
+
+                    </div>
+                    <!-- end tab content -->
+                    <!-- start tab content -->
+                    <div class="tab-pane fade in" id="tab-four2">
+
+                        <!-- start section -->
+                        <section class="wow fadeIn pt-0">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <main class="col-12 col-lg-9 right-sidebar md-padding-15px-lr">
+                                        {% if information %}
+
+                                        {% for obj in information  %}
+                                        <!-- start post item -->
+                                        <div
+                                            class="blog-post-content margin-60px-bottom padding-60px-bottom d-inline-block border-bottom border-color-extra-light-gray md-margin-30px-bottom md-padding-30px-bottom text-center text-md-left md-no-border">
+                                            <div class="row no-gutters align-items-center">
+                                                <div
+                                                    class="col-12 col-lg-5 blog-image md-margin-30px-bottom sm-margin-20px-bottom margin-45px-right md-no-margin-right">
+                                                    <a href="{{obj.get_absolute_url}}"><img {% if obj.backimage %}
+                                                            src=" {{obj.backimage.url}} " {% else %}
+                                                            src="http://placehold.it/1920x1100" {% endif %} alt=""></a>
+                                                </div>
+                                                <div class="col-12 col-lg-6 blog-text">
+                                                    <div class="content margin-20px-bottom md-no-padding-left ">
+                                                        <a href="{{obj.get_absolute_url}}"
+                                                            class="text-extra-dark-gray margin-5px-bottom alt-font text-extra-large font-weight-600 d-inline-block">
+                                                            {{obj.title}} </a>
+                                                        <div
+                                                            class="text-medium-gray text-extra-small margin-15px-bottom text-uppercase alt-font">
+                                                            <span><a href="/" class="text-medium-gray"> {{obj.author}}
+                                                                </a></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>
+                                                                {{obj.created_date.date}} </span>&nbsp;&nbsp;&nbsp;
+                                                        </div>
+                                                        <p class="m-0 width-95"> {{obj.summary|striptags|safe}}... </p>
+                                                    </div>
+                                                    <a class="btn btn-very-small btn-dark-gray text-uppercase"
+                                                        href="{% url 'infromation_update' slug=obj.slug %}">Düzenle</a>
+                                                    <a class="btn btn-very-small btn-dark-gray text-uppercase"
+                                                        href="{% url 'infromation_delete' slug=obj.slug %}">Kaldır</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end post item -->
+                                        {% endfor %}
+
+                                        {% endif %}
+                                    </main>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- end section -->
+                    </div>
+                    <!-- end tab content -->
+                    <!-- start tab content -->
+                    <div class="tab-pane fade in" id="tab-four3">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6 sm-margin-30px-bottom">
+                                <img src="images/about-img12.jpg" alt="" class="width-100" />
+                            </div>
+                            <div class="col-12 col-lg-5 col-md-6 offset-lg-1">
+                                <h6
+                                    class="alt-font font-weight-700 text-extra-dark-gray margin-20px-bottom text-uppercase">
+                                    Branding</h6>
+                                <span class="text-extra-large text-extra-dark-gray margin-20px-bottom d-block">We use
+                                    different types of massage for a variety of health related benefits purposes.</span>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has
+                                    survived not only five centuries, but also the leap into electronic typesetting,
+                                    remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing
+                                    and typesetting industry.</p>
+                                <a href="javascript:void(0);" class="btn btn-small btn-rounded btn-dark-gray">Explore
+                                    services</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end tab content -->
+                    {% comment %}
+                    <!-- start tab content -->
+                    <div class="tab-pane fade in" id="tab-four4">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6 sm-margin-30px-bottom">
+                                <img src="images/about-img13.jpg" alt="" />
+                            </div>
+                            <div class="col-12 col-lg-5 col-md-6 offset-lg-1">
+                                <h6
+                                    class="alt-font font-weight-700 text-extra-dark-gray margin-20px-bottom text-uppercase">
+                                    Brainstorming</h6>
+                                <span class="text-extra-large text-extra-dark-gray margin-20px-bottom d-block">We use
+                                    different types of massage for a variety of health related benefits purposes.</span>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has
+                                    survived not only five centuries, but also the leap into electronic typesetting,
+                                    remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing
+                                    and typesetting industry.</p>
+                                <a href="javascript:void(0);" class="btn btn-small btn-rounded btn-dark-gray">Explore
+                                    services</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end tab content -->
+                    {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end tab style 04 section -->
+
+
+
+
+
+
+
+
+{% endblock  %}

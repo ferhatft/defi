@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<style>
+    .howtodo {
+        display: flex;
+    }
+
+    .howtodo i {
+        padding-left: 15px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .howtodo .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #232323;
+        color: #f7f7f7;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .howtodo i:hover .tooltiptext {
+        visibility: visible;
+    }
+
+    
+</style>
+
+<!-- end page title section -->
+<section class="wow fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-10 mx-auto text-center text-md-left">
+                <p class="text-center text-md-justify text-medium line-height-28 sm-line-height-26">Lorem Ipsum is
+                    simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown printer took a <strong
+                        class="text-extra-dark-gray text-decoration-underline">galley of type and scrambled</strong>
+                    it
+                    to make a type specimen book. It has survived not only five centuries, but also the leap into
+                    electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                    the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like aldus pagemaker including versions.</p>
+                <p class="text-center text-md-justify">There are many variations of passages of Lorem Ipsum
+                    available,
+                    but the majority have suffered alteration in some form, by injected humour, or randomised words
+                    which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you
+                    need to be sure there isn't anything embarrassing hidden in the middle of text. <strong
+                        class="text-extra-dark-gray text-decoration-underline">All the lorem ipsum generators on the
+                        internet tend</strong> to repeat predefined chunks as necessary, making this the first true
+                    generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
+                    of
+                    model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem
+                    Ipsum
+                    is therefore always free from repetition, injected humour.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% comment %} <style>
+    #backimage-clear_id {
+        width: 19px;
+        margin-top: 5px;
+        float: left;
+        text-align: left;
+        margin-right: 0;
+        margin-left: 21px;
+    }
+</style> {% endcomment %}
+
+<!-- start Comment form section -->
+<section class="wow fadeIn bg-light-gray" id="comments">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-10 mx-auto text-center margin-80px-bottom sm-margin-40px-bottom">
+                <div class="position-relative overflow-hidden width-100">
+                    <span
+                        class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">Defibilgi</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-10 d-flex flex-wrap p-0 mx-auto text-center">
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+
+                    <div class="row">
+
+                        <div class="col-12 col-lg-6">
+                            {{form.title}}
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            {{form.tags}}
+                        </div>
+
+                        <div style="margin: auto;" class="col-12 col-lg-8">
+                            {{form.profileimage}}
+                        </div>
+
+                        {% comment %}
+                        <div class="col-12 col-lg-12 howtodo ">
+                            {{form.backimage}}
+
+                            <i class="far fa-question-circle">
+                                <span class="tooltiptext">Ana Sayfada görünecek '1920X1100'</span>
+                            </i>
+                        </div> {% endcomment %}
+                    </div>
+                    <div class="col-12">
+                        {{form.abaout}}
+                    </div>
+                    <div class="col-12 text-center">
+                        <button class="btn btn-dark-gray btn-small margin-15px-top" type="submit">Kayıt ET</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end Comment form section -->
+{% comment %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{form}}
+
+
+    <button type="submit">Save it</button>
+
+</form> {% endcomment %}
+
+{% endblock body %}

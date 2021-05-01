@@ -1,0 +1,411 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="tr">
+
+<head>
+    <!-- title -->
+    <title>Defi – Creative Agency, Corporate and Portfolio Multi-purpose Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="ThemeZaa">
+    <!-- description -->
+    <meta name="description"
+        content="Defi is a highly creative, modern, visually stunning and Bootstrap responsive multipurpose agency and portfolio HTML5 template with 25 ready home page demos.">
+    <!-- keywords -->
+    <meta name="keywords"
+        content="creative, modern, clean, bootstrap responsive, html5, css3, portfolio, blog, agency, templates, multipurpose, one page, corporate, start-up, studio, branding, designer, freelancer, carousel, parallax, photography, personal, masonry, grid, coming soon, faq">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    {% block css %}
+    <!-- animation -->
+    <link rel="stylesheet" href="{% static 'defi/css/animate.css' %}" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{% static 'defi/css/bootstrap.min.css' %}" />
+    <!-- et line icon -->
+    <link rel="stylesheet" href="{% static 'defi/css/et-line-icons.css' %}" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="{% static 'defi/css/font-awesome.min.css' %}" />
+    <!-- themify icon -->
+    <link rel="stylesheet" href="{% static 'defi/css/themify-icons.css' %}">
+    <!-- swiper carousel -->
+    <link rel="stylesheet" href="{% static 'defi/css/swiper.min.css' %}">
+    <!-- justified gallery  -->
+    <link rel="stylesheet" href="{% static 'defi/css/justified-gallery.min.css' %}">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="{% static 'defi/css/magnific-popup.css' %}" />
+    <!-- revolution slider -->
+    <link rel="stylesheet" type="text/css" href="{% static 'defi/revolution/css/settings.css' %}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{% static 'defi/revolution/css/layers.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'defi/revolution/css/navigation.css' %}">
+    <!-- bootsnav -->
+    <link rel="stylesheet" href="{% static 'defi/css/bootsnav.css' %}">
+    <!-- style -->
+    <link rel="stylesheet" href="{% static 'defi/css/style.css' %}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'defi/css/responsive.css' %}" />
+    <!--[if IE]>
+            <script src="{% static 'defi/js/html5shiv.js' %}"></script>
+        <![endif]-->
+    {% endblock css %}
+
+
+
+</head>
+
+
+{% url 'home' as home_url %}
+{% url 'dictionary' as dic_url %}
+{% url 'dictionary_create' as dic_create_url %}
+
+
+{% url 'dictionary' as dict_url %}
+{% url 'all_dictionary' as all_dict_url %}
+{% static 'dictionary_report' obj.slug  as report_url %}
+
+
+{% url 'bilgi' as inf_url %}
+{% url 'addbilgi' as inf_create_url %}
+
+
+{% url 'news' as news_url %}
+{% url 'addnews' as new_create_url %}
+
+
+{% static 'defi/images/userprofile.svg' as profile_image_url %}
+{% block home %}
+
+<body>
+    {% endblock home %}
+
+    {% block header %}
+    <!-- start header -->
+    <header>
+        <!-- start navigation -->
+        <nav class="navbar navbar-default bootsnav background-black header-dark   navbar-top nav-box-width white-link navbar-expand-lg">
+            <div class="container-fluid nav-header-container">
+                <!-- start logo -->
+                <div class="col-auto pl-0">
+                    <a href="{{home_url}}" title="Defi" class="logo"><img src="{% static 'defi/images/logo.png' %}"
+                            data-rjs="images/logo@2x.png" class="logo-dark" alt="defi"><img
+                            src=" {% static 'defi/images/logo-white.png' %}" data-rjs="images/logo-white@2x.png"
+                            alt="Defi" class="logo-light default"></a>
+                </div>
+                <!-- end logo -->
+                <div class="col accordion-menu pr-0 pr-md-3">
+                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse"
+                        data-target="#navbar-collapse-toggle-1">
+                        <span class="sr-only">toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-collapse collapse justify-content-end" id="navbar-collapse-toggle-1">
+                        <ul id="accordion" class="nav navbar-nav no-margin alt-font text-normal" data-in="fadeIn"
+                            data-out="fadeOut">
+                            <!-- start menu item -->
+                            <li class="dropdown megamenu-fw">
+                                <a href="{{home_url}}">Anasayfa</a>
+                                <!-- start sub menu -->
+                            </li>
+                            <!-- end menu item -->
+                            <!-- Defisözlük -->
+                            <li class="dropdown simple-dropdown"><a href="{{dic_url}}">Defisözlük</a><i
+                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
+                                    aria-hidden="true"></i>
+                                <!-- start sub menu -->
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href="{{dic_create_url}}">Görüş Belirt<i class="fas fa-angle-right"></i></a>
+
+                                    </li>
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href="{{dic_url}}">En
+                                            çok Okunanlar<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Defibilgi -->
+                            <li class="dropdown simple-dropdown"><a href="{{inf_url}}">Defibilgi</a><i
+                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
+                                    aria-hidden="true"></i>
+                                <!-- start sub menu -->
+                                <ul class="dropdown-menu" role="menu">
+
+
+                                    {% if 'bilgi' in perms %}
+                                    {% if 'bilgi.add_i̇nformationmodel' in perms %}
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href=" {{inf_create_url}} ">Yeni Gönderi<i
+                                                class="fas fa-angle-right"></i></a> </li>
+                                    {% endif %}
+                                    {% endif %}
+
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href=" {{inf_url}} ">En
+                                            çok Okunanlar<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Defihaber -->
+                            <li class="dropdown simple-dropdown"><a href="{{news_url}}">Defihaber</a><i
+                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
+                                    aria-hidden="true"></i>
+                                <!-- start sub menu -->
+                                <ul class="dropdown-menu" role="menu">
+
+                                    {% if 'news' in perms %}
+                                    {% if 'news.add_newsmodel' in perms %}
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href=" {{new_create_url}} ">Haber Ekle<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                    {% endif %}
+                                    {% endif %}
+
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="{{news_url}}">En
+                                            çok Okunanlar<i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown simple-dropdown"><a href="#">Hesabım</a><i
+                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
+                                    aria-hidden="true"></i>
+                                <!-- start sub menu -->
+                                <ul class="dropdown-menu" role="menu">
+
+                                    {% if request.user.is_authenticated %}
+
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href="/accounts/profile/">Profil</a></li>
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href="/accounts/logout/">Çıkış</a></li>
+                                    {% else %}
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href="/accounts/login/">Giriş</a>
+
+                                    </li>
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                                            href="/accounts/signup/">Kayıt</a>
+
+                                    </li>
+
+
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-auto pr-0">
+                    <div class="header-searchbar">
+                        <a href="#search-header" class="header-search-form"><i
+                                class="fas fa-search search-button"></i></a>
+                        <!-- search input-->
+                        <form id="search-header" method="post" action="{% url 'dictionary' %}" name="search-header"
+                            class="mfp-hide search-form-result">
+                            <div class="search-form position-relative">
+                                <button type="submit" class="fas fa-search close-search search-button"></button>
+                                <input type="text" name="q" class="search-input"
+                                    placeholder="Enter your keywords..." autocomplete="off">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="header-social-icon d-none d-md-inline-block">
+                        <a href="https://www.facebook.com/" title="Facebook" target="_blank"><i
+                                class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/" title="Twitter" target="_blank"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://dribbble.com/" title="Dribbble" target="_blank"><i
+                                class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- end navigation -->
+    </header>
+    <!-- end header -->
+    {% endblock header %}
+
+    {% block body %}
+
+    {% endblock body %}
+
+
+    {% block footer %}
+
+    <!-- start footer -->
+    <footer class="footer-standard-dark bg-extra-dark-gray">
+        <div class="footer-widget-area padding-five-tb sm-padding-30px-tb">
+            <div class="container">
+                <div class="row">
+                    <div
+                        class="col-lg-4 col-md-6 widget border-right border-color-medium-dark-gray md-no-border-right md-margin-30px-bottom sm-text-center">
+                        <!-- start logo -->
+                        <a href="{{home_url}}" class="margin-20px-bottom d-inline-block"><img class="footer-logo"
+                                src="{% static 'defi/images/logo-white.png' %}" data-rjs="images/logo-white@2x.png"
+                                alt=""></a>
+                        <!-- end logo -->
+                        <p class="text-small width-95 sm-width-100">Lorem Ipsum is simply dummy text of the printing and
+                            typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.</p>
+                        <!-- start social media -->
+                        <div class="social-icon-style-8 d-inline-block vertical-align-middle">
+                            <ul class="small-icon no-margin-bottom">
+                                <li><a class="facebook text-white-2" href="https://www.facebook.com/" target="_blank"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a class="twitter text-white-2" href="https://twitter.com/" target="_blank"><i
+                                            class="fab fa-twitter"></i></a></li>
+                                <li><a class="google text-white-2" href="https://plus.google.com" target="_blank"><i
+                                            class="fab fa-google-plus-g"></i></a></li>
+                                <li><a class="instagram text-white-2" href="https://instagram.com/" target="_blank"><i
+                                            class="fab fa-instagram no-margin-right" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- end social media -->
+                    </div>
+                    <!-- start additional links -->
+                    <div
+                        class="col-lg-4 col-md-6 widget border-right border-color-medium-dark-gray padding-45px-left md-padding-15px-left md-no-border-right md-margin-30px-bottom text-center text-md-left">
+                        <div
+                            class="widget-title alt-font text-small text-medium-gray text-uppercase margin-10px-bottom font-weight-600">
+                            İLAVE BAĞLANTILAR</div>
+                        <ul class="list-unstyled">
+                            <li><a class="text-small" href="home-classic-corporate.html">Home Classic Corporate</a></li>
+                            <li><a class="text-small" href="home-creative-business.html">Home Creative Business</a></li>
+                            <li><a class="text-small" href="home-creative-designer.html">Home Creative Designer</a></li>
+                            <li><a class="text-small" href="home-portfolio-minimal.html">Home Portfolio Minimal</a></li>
+                            <li><a class="text-small" href="home-portfolio-parallax.html">Home Portfolio parallax</a>
+                            </li>
+                            <li><a class="text-small" href="home-portfolio-personal.html">Home Portfolio Personal</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end additional links -->
+                    <!-- start contact information -->
+                    <div
+                        class="col-lg-4 col-md-6 widget border-right border-color-medium-dark-gray padding-45px-left md-padding-15px-left md-clear-both md-no-border-right sm-margin-30px-bottom text-center text-md-left">
+                        <div
+                            class="widget-title alt-font text-small text-medium-gray text-uppercase margin-10px-bottom font-weight-600">
+                            İLETİŞİM BİLGİLERİ</div>
+                        <p class="text-small d-block margin-15px-bottom width-80 sm-width-100">POFO Design Agency<br>
+                            301 The Greenhouse, Custard Factory, London, E2 8DY.</p>
+                        <div class="text-small">Email: <a href="mailto:sales@domain.com">sales@domain.com</a></div>
+                        <div class="text-small">Phone: +44 (0) 123 456 7890</div>
+                        <a href="contact-us-modern.html"
+                            class="text-small text-uppercase text-decoration-underline">View Direction</a>
+                    </div>
+                    <!-- end contact information -->
+
+                </div>
+            </div>
+        </div>
+        <div class="bg-dark-footer padding-50px-tb text-center sm-padding-30px-tb">
+            <div class="container">
+                <div class="row">
+                    <!-- start copyright -->
+                    <div class="col-md-6 text-md-left text-small text-center">&copy; 2019 POFO is Proudly Powered by <a
+                            href="http://www.themezaa.com" target="_blank" class="text-dark-gray">ThemeZaa</a></div>
+                    <div class="col-md-6 text-md-right text-small text-center">
+                        <a href="javascript:void(0);" class="text-dark-gray">Term and
+                            Condition</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);"
+                            class="text-dark-gray">Privacy Policy</a>
+                    </div>
+                    <!-- end copyright -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+    {% endblock footer %}
+    <!-- start scroll to top -->
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
+    <!-- end scroll to top  -->
+    <!-- javascript libraries -->
+    <script type="text/javascript" src="{% static 'defi/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/bootstrap.bundle.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/jquery.easing.1.3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/skrollr.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/smooth-scroll.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/jquery.appear.js' %}"></script>
+    <!-- menu navigation -->
+    <script type="text/javascript" src="{% static 'defi/js/bootsnav.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/jquery.nav.js' %}"></script>
+    <!-- animation -->
+    <script type="text/javascript" src="{% static 'defi/js/wow.min.js' %}"></script>
+    <!-- page scroll -->
+    <script type="text/javascript" src="{% static 'defi/js/page-scroll.js' %}"></script>
+    <!-- swiper carousel -->
+    <script type="text/javascript" src="{% static 'defi/js/swiper.min.js' %}"></script>
+    <!-- counter -->
+    <script type="text/javascript" src="{% static 'defi/js/jquery.count-to.js' %}"></script>
+    <!-- parallax -->
+    <script type="text/javascript" src="{% static 'defi/js/jquery.stellar.js' %}"></script>
+    <!-- magnific popup -->
+    <script type="text/javascript" src="{% static 'defi/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- portfolio with shorting tab -->
+    <script type="text/javascript" src="{% static 'defi/js/isotope.pkgd.min.js' %}"></script>
+    <!-- images loaded -->
+    <script type="text/javascript" src="{% static 'defi/js/imagesloaded.pkgd.min.js' %}"></script>
+    <!-- pull menu -->
+    <script type="text/javascript" src="{% static 'defi/js/classie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/js/hamburger-menu.js' %}"></script>
+    <!-- counter  -->
+    <script type="text/javascript" src="{% static 'defi/js/counter.js' %}"></script>
+    <!-- fit video  -->
+    <script type="text/javascript" src="{% static 'defi/js/jquery.fitvids.js' %}"></script>
+    <!-- skill bars  -->
+    <script type="text/javascript" src="{% static 'defi/js/skill.bars.jquery.js' %}"></script>
+    <!-- justified gallery  -->
+    <script type="text/javascript" src="{% static 'defi/js/justified-gallery.min.js' %}"></script>
+    <!--pie chart-->
+    <script type="text/javascript" src="{% static 'defi/js/jquery.easypiechart.min.js' %}"></script>
+    <!-- retina -->
+    <script type="text/javascript" src="{% static 'defi/js/retina.min.js' %}"></script>
+    <!-- revolution -->
+    <script type="text/javascript" src="{% static 'defi/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'defi/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <!-- revolution slider extensions (load below extensions JS files only on local file systems to make the slider work! The following part can be removed on server for on demand loading) -->
+    <!--<script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'defi/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>-->
+    <!-- setting -->
+    <script type="text/javascript" src="{% static 'defi/js/main.js' %}"></script>
+
+
+
+    {% block loadfromid %}
+
+    {% endblock loadfromid %}
+
+    {% block filename %}
+
+    <script type="text/javascript">
+        $('.toast').toast('show');
+        $('#new-image').change(function () {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Seçilen Dosya: ${file.name}`);
+        });
+    </script>
+
+    {% endblock filename %}
+
+</body>
+
+</html>

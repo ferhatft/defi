@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{%  load static %}
+
+{% block body %}
+
+<div class="box-layout">
+    {% if anahaber %}
+
+
+    <!-- start slider section -->
+    <section class="wow fadeIn p-0 main-slider h-100 mobile-height">
+        <div class="swiper-full-screen swiper-container h-100 w-100 black-move">
+            <div class="swiper-wrapper">
+
+                {% for obj in anahaber  %}
+                <!-- start slider item -->
+                <div class="swiper-slide cover-background sm-background-image-center"
+                    style="background-image:url('{{obj.backimage.url}}');">
+                    <div class="container-fluid slider-half-screen position-relative">
+                        <div class="slider-typography text-left">
+                            <div class="slider-text-middle-main">
+                                <div class="slider-text-middle padding-ten-left sm-padding-five-left">
+                                    <a href="{{obj.get_absolute_url}}" class="btn btn-small btn-dark-gray">Habere
+                                        Git</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end slider item -->
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-square swiper-full-screen-pagination"></div>
+            <div class="swiper-button-next swiper-button-black-highlight d-none"></div>
+            <div class="swiper-button-prev swiper-button-black-highlight d-none"></div>
+        </div>
+    </section>
+    <!-- end slider section -->
+    {% endif %}
+
+
+    {% if  sliderhaber %}
+
+
+
+
+    <!-- start portfolio section -->
+    <section class="wow fadeIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 hover-option4 margin-5px-bottom">
+                    <div class="swiper-multy-row-container overflow-hidden">
+                        <div class="swiper-wrapper">
+
+
+                            {% for obj in sliderhaber  %}
+
+                            <!-- start slide item -->
+                            <div class="swiper-slide grid-item">
+                                <a href="{{obj.get_absolute_url}}">
+                                    <figure>
+                                        <div class="portfolio-img bg-extra-dark-gray">
+                                            <img src="{{obj.backimage.url}}" alt="" />
+                                        </div>
+                                        <figcaption>
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div
+                                                        class="portfolio-hover-content position-relative last-paragraph-no-margin">
+                                                        <p class="text-medium-gray text-uppercase text-extra-small">
+                                                            {% if obj.tags.all %}
+                                                                {% for tag in obj.tags.all  %}
+                                                                {{tag.name}},
+                                                                {% endfor %}
+                                                            {% endif %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                            <!-- end slide item -->
+
+                            {% endfor %}
+
+                        </div>
+                        <!-- start slider pagination -->
+
+                        <div class="swiper-pagination swiper-pagination-square   swiper-multy-row-pagination"></div>
+                        <div class="swiper-portfolio-prev swiper-button-black-highlight"><i class="ti-arrow-left"></i>
+                        </div>
+                        <div class="swiper-portfolio-next swiper-button-black-highlight"><i class="ti-arrow-right"></i>
+                        </div>
+                        <!-- end slider pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end portfolio section -->
+    {% endif %}
+
+</div>
+
+
+<!-- start post content section -->
+<section class="wow fadeIn hover-option4 blog-post-style3">
+    <div class="container">
+        <div class="row">
+
+            {% for haber in rest  %}
+            <!-- start post item -->
+            <div class="col-12 col-lg-4 col-md-6 grid-item margin-30px-bottom text-center text-md-left wow fadeInUp">
+                <div class="blog-post bg-light-gray inner-match-height">
+                    <div class="blog-post-images overflow-hidden position-relative">
+                        <a href="{{haber.get_absolute_url}}">
+                            <img src="{{haber.backimage.url}}" alt="">
+                            <div class="blog-hover-icon"><span class="text-extra-large font-weight-300">+</span></div>
+                        </a>
+                    </div>
+                    <div class="post-details padding-40px-all md-padding-20px-all">
+                        <a href="{{haber.get_absolute_url}}"
+                            class="alt-font post-title text-medium text-extra-dark-gray width-100 d-block lg-width-100 margin-15px-bottom">
+                            {{haber.title}} </a>
+                        <p>{{haber.intro|safe|truncatewords:15}}</p>
+                        <div class="separator-line-horrizontal-full bg-medium-gray margin-20px-tb"></div>
+                        <div class="author">
+                            <span class="text-medium-gray text-uppercase text-extra-small d-inline-block"><a
+                                    href="{{haber.get_absolute_url}}" class="text-medium-gray"> {{haber.author}}
+                                </a>&nbsp;&nbsp;|&nbsp;&nbsp; {{haber.created_date.date}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end post item -->
+
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+</section>
+<!-- end blog content section -->
+{% endblock body %}

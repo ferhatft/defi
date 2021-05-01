@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
+  {% block extra_head %}
+  {% endblock %}
+</head>
+
+<body>
+  {% block body %}
+
+  {% comment %}
+  {% if messages %}
+  <div>
+    <strong>Messages:</strong>
+    <ul>
+      {% for message in messages %} --------------------------------- Mesaj kısmı şimidlik kapattım
+      <li>{{message}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  {% endcomment %}
+
+
+  {% block content %}
+
+  {% endblock %}
+  
+  <!-- start MENU section -->
+  <section class="wow fadeIn pt-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-7 text-center margin-100px-bottom sm-margin-40px-bottom">
+          <div class="position-relative overflow-hidden w-100">
+            <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase">Menu</span>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 col-md-10">
+          <ul class="p-0 list-style-3">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+            <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+            {% else %}
+            <li><a href="{% url 'account_login' %}">Sign In</a></li>
+            <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+  {% block extra_body %}
+  {% endblock %}
+
+  
+</body>
+
+</html>

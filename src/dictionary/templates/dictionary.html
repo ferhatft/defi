@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+
+<style>
+    p {
+        font-size: 14px;
+        color: #6f6f6f;
+        font-weight: 400;
+        line-height: 24px;
+    }
+</style>
+
+<!-- start post content section -->
+<section>
+    <div id="1" class="container">
+        <div class="row flex-lg-row-reverse">
+            <main
+                class="col-12 col-lg-9 left-sidebar md-margin-60px-bottom sm-margin-40px-bottom pr-0 md-no-padding-left">
+
+                <div class="col-12 blog-details-comments">
+                    <div class="width-100 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
+                        <div class="position-relative overflow-hidden width-100">
+                            <span
+                                class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">İlgini
+                                Çekebilecek Konular</span>
+                        </div>
+                    </div>
+
+
+
+                    <style>
+                        .votebtn {
+                            color: #232323;
+                        }
+
+                        .votebtn:hover {
+                            color: #ff214f;
+                        }
+                    </style>
+
+
+                    <ul class="blog-comment">
+
+                        {% if dictionaryies %}
+                        {% for obj in dictionaryies  %}
+                        <li id="{{obj.id}}">
+                            <div  class="d-block d-md-flex  width-100">
+                                <div class="width-110px sm-width-50px text-center sm-margin-10px-bottom">
+                                    <img {% if obj.author.profileimage %} src="{{obj.author.profileimage.url}}"
+                                        {% else %} src="{{profile_image_url}}" {% endif %}
+                                        class="rounded-circle width-85 sm-width-100" alt="" />
+                                </div>
+                                <div class="width-100 padding-40px-left last-paragraph-no-margin sm-no-padding-left">
+                                    <a href="{{obj.get_absolute_url}}"
+                                        class="text-extra-dark-gray text-uppercase alt-font font-weight-600 text-small">
+                                        {{obj.title}}</a>
+
+
+                                    <a href="{{obj.get_absolute_url}}"
+                                        class="inner-link btn-reply text-uppercase alt-font text-extra-dark-gray">incele</a>
+                                    {% if obj.author == userprofile %}
+                                    <a href="{% url 'dictionary_update' slug=obj.title|slugify %}"
+                                        class="inner-link btn-reply text-uppercase alt-font text-extra-dark-gray">Güncelle</a>
+
+                                    <a href="{% url 'dictionary_delete' slug=obj.title|slugify %}"
+                                        class="inner-link btn-reply text-uppercase alt-font text-extra-dark-gray">Sil</a>
+
+                                    {% endif %}
+
+
+                                    <div class="text-small text-medium-gray  margin-10px-bottom">
+                                        {{obj.author}} | {{obj.created_date}} </div>
+                                    <p> {{obj.main_context}} </p>
+
+                                    {% if obj.tags.all %}
+
+                                    <p>
+
+                                        {% for tag in obj.tags.all  %}
+
+                                        <a href="{% url 'taglist' tag.slug %}"> #{{tag.name}} </a> |
+
+                                        {% endfor %}
+                                    </p>
+
+                                    {% endif %}
+
+
+                                    <div class="row">
+                                        <form method="POST" class="" action=" {% url 'dic_upwote' obj.pk %} ">
+                                            {% csrf_token %}
+
+                                            <div class="col-12 text-center p-0">
+                                                <button name="dict_id" value="{{ obj.id }}" class="btn margin-15px-top"
+                                                    type="submit">
+                                                    <small>{{obj.num_vote_up}}</small><i
+                                                        class="fas fa-thumbs-up votebtn"></i> </button>
+                                            </div>
+                                        </form>
+
+                                        <form method="POST" class="" action="{% url 'dic_dawnvote' obj.pk %}">
+                                            {% csrf_token %}
+
+                                            <div class="col-12 text-center p-0">
+                                                <button name="dict_id" value="{{ obj.id }}" class="btn margin-15px-top"
+                                                    type="submit">
+                                                    <small>{{obj.num_vote_down}}</small> <i
+                                                        class="fas fa-thumbs-down votebtn"></i></button>
+                                            </div>
+                                        </form>
+
+
+                                        <a href="http://www.facebook.com/share.php?u={{ request.build_absolute_uri }}{{obj.slug}}"
+                                            class="btn margin-15px-top"><i class="fab fa-facebook-f votebtn"></i></a>
+                                            
+                                        <a href="https://twitter.com/intent/tweet?via=instelacom&url={{ request.build_absolute_uri }}{{obj.slug}}"
+                                            class="btn margin-15px-top"><i class="fab fa-twitter votebtn"></i></a>
+
+                                        <a href="{{request.path}}report/{{obj.slug}}"
+                                            class="btn margin-15px-top"><i class="fab fa-font-awesome-flag votebtn"></i></a>
+
+                                       
+
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="col-12 margin-eight-top" id="comments">
+                    <div class="divider-full bg-medium-light-gray"></div>
+                </div>
+                <div id="defisözlük" class="col-12 d-flex flex-wrap p-0">
+                    <div class="col-12 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
+                        <div class="position-relative overflow-hidden width-100">
+                            <span
+                                class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">görüşünü
+                                belirt</span>
+                        </div>
+                    </div>
+
+                    <form method="POST" class="">
+                        {% csrf_token %}
+
+
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                {{ form.title }}
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                {{ form.tags }}
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-12">
+                                {{ form.main_context }}
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button class="btn btn-dark-gray btn-small margin-15px-top" type="submit">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+
+
+            {% include "aside.html" %}
+        </div>
+    </div>
+</section>
+<!-- end blog content section -->
+
+{% comment %}
+<script>
+    localStorage.setItem("scrollTop", document.body.scrollTop);
+
+    window.onload = function () {
+            var scroll = parseInt(localStorage.getItem("scrollTop"));
+            //parseInt(localStorage.scrollTop);   
+            if (!isNaN(scroll))
+                document.body.scrollTop = scroll;
+</script> {% endcomment %}
+
+
+
+{% comment %}
+<script type="text/javascript">
+    function refreshPage() {
+        var page_y = document.getElementsByTagName("body")[0].scrollTop;
+        window.location.href = window.location.href.split('?')[0] + '?page_y=' + page_y;
+    }
+    window.onload = function () {
+        setTimeout(refreshPage, 35000);
+        if (window.location.href.indexOf('page_y') != -1) {
+            var match = window.location.href.split('?')[1].split("&")[0].split("=");
+            document.getElementsByTagName("body")[0].scrollTop = match[1];
+        }
+    }
+</script> {% endcomment %}
+
+{% comment %}
+<script>
+    let sidebar = document.querySelector(".sidebar");
+
+    let top = localStorage.getItem("sidebar-scroll");
+    if (top !== null) {
+        sidebar.scrollTop = parseInt(top, 10);
+    }
+
+    window.addEventListener("beforeunload", () => {
+        localStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+    });
+</script> {% endcomment %}
+
+{% comment %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var divLoc = $('#8').offset();
+        $('html, body').animate({
+            scrollTop: divLoc.top
+        }, "slow");
+    });
+</script> {% endcomment %}
+
+{% endblock body %}
+
+
+
+{% block loadfromid %}
+
+
+<script>
+    $(function () {
+        $('html, body').animate({
+            scrollTop: $('#{{scrollid}}').offset().top
+        }, 350);
+    });
+</script>
+{% endblock loadfromid %}

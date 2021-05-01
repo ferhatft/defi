@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+
+
+<!-- start post content section -->
+<section>
+    <div class="container">
+        <div class="row flex-lg-row-reverse">
+            <main
+                class="col-12 col-lg-9 left-sidebar md-margin-60px-bottom sm-margin-40px-bottom pr-0 md-no-padding-left">
+
+                <div class="col-12 margin-eight-top" id="comments">
+                    <div class="divider-full bg-medium-light-gray"></div>
+                </div>
+                <div class="col-12 d-flex flex-wrap p-0">
+                    <div class="col-12 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
+                        <div class="position-relative overflow-hidden width-100">
+                            <span
+                                class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">görüşünü
+                                belirt</span>
+                        </div>
+                    </div>
+
+                    <form method="POST" class="">
+                        {% csrf_token %}
+
+
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                {{ form.title }}
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                {{ form.tags }}
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-12">
+                                {{ form.main_context }}
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button class="btn btn-dark-gray btn-small margin-15px-top" type="submit">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+
+
+            <aside class="col-12 col-lg-3">
+                <div class="d-inline-block width-100 margin-45px-bottom sm-margin-25px-bottom">
+                    <form>
+                        <div class="position-relative">
+                            <input type="text"
+                                class="bg-transparent text-small m-0 border-color-extra-light-gray medium-input float-left"
+                                placeholder="Enter your keywords...">
+                            <button type="submit" class="bg-transparent btn position-absolute right-0 top-1"><i
+                                    class="fas fa-search no-margin-left"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="margin-45px-bottom sm-margin-25px-bottom">
+                    <div
+                        class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title">
+                        <span>Gündem</span>
+                    </div>
+                    <ul class="list-style-6 margin-50px-bottom text-small">
+                        <li><a href="blog-masonry.html">Arts and Entertainment</a><span>12</span></li>
+                        <li><a href="blog-masonry.html">Blog</a><span>05</span></li>
+                        <li><a href="blog-masonry.html">Blog Full width</a><span>08</span></li>
+                        <li><a href="blog-masonry.html">Blog Grid</a><span>10</span></li>
+                        <li><a href="blog-masonry.html">Branding</a><span>21</span></li>
+                        <li><a href="blog-masonry.html">Design Tutorials</a><span>09</span></li>
+                        <li><a href="blog-masonry.html">Designing</a><span>07</span></li>
+                        <li><a href="blog-masonry.html">Feature</a><span>06</span></li>
+                        <li><a href="blog-masonry.html">Home Blog</a><span>10</span></li>
+                        <li><a href="blog-masonry.html">Onepage Fashion</a><span>11</span></li>
+                        <li><a href="blog-masonry.html">Sample</a><span>06</span></li>
+                    </ul>
+                </div>
+                <div class="margin-45px-bottom sm-margin-25px-bottom">
+                    <div
+                        class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title">
+                        <span>Güncel Taglar</span>
+                    </div>
+                    <div class="tag-cloud">
+                        <a href="blog-grid.html">ADVERTISEMENT</a>
+                        <a href="blog-grid.html">ARTISTRY</a>
+                        <a href="blog-grid.html">BLOG</a>
+                        <a href="blog-grid.html">CONCEPTUAL</a>
+                        <a href="blog-grid.html">DESIGN</a>
+                        <a href="blog-grid.html">FASHION</a>
+                        <a href="blog-grid.html">INSPIRATION</a>
+                        <a href="blog-grid.html">SMART</a>
+                        <a href="blog-grid.html">QUOTES</a>
+                        <a href="blog-grid.html">UNIQUE</a>
+                        <a href="blog-grid.html">CONCEPTS</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<!-- end blog content section -->
+
+{% endblock body %}

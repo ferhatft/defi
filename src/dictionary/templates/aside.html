@@ -1,0 +1,55 @@
+<aside class="col-12 col-lg-3">
+    <div class="d-inline-block width-100 margin-45px-bottom sm-margin-25px-bottom">
+        <form method="GET" action="{% url 'dictionary' %}">
+            <div class="position-relative">
+                <input type="text" name="q"
+                    class="bg-transparent text-small m-0 border-color-extra-light-gray medium-input float-left"
+                    placeholder="Anahtar kelime gir...">
+                <button type="submit" class="bg-transparent btn position-absolute right-0 top-1"><i
+                        class="fas fa-search no-margin-left"></i></button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="margin-45px-bottom sm-margin-25px-bottom">
+        <div
+            class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title">
+            <span>Gündem</span></div>
+        <ul class="list-style-6 margin-50px-bottom text-small">
+            {% if dic_by_coms %}
+            {% for obj in dic_by_coms  %}
+            <li><a href="{{obj.get_absolute_url}}">{{ obj.title}}</a><span> {{obj.dictionaryanswers.count}} </span>
+            </li>
+            {% endfor %}
+            <a href=" {{all_dict_url}} "
+                class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Daha
+                Fazla</a>
+            {% else %}
+
+            {% for obj in all_dic_by_coms  %}
+            <li><a href="{{obj.get_absolute_url}}">{{ obj.title}}</a><span> {{obj.dictionaryanswers.count}} </span>
+            </li>
+            {% endfor %}
+            <a href=" {{dict_url}} "
+                class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Daha Az </a>
+            {% endif %}
+
+
+
+
+        </ul>
+    </div>
+    <div class="margin-45px-bottom sm-margin-25px-bottom">
+        <div
+            class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title">
+            <span>Güncel Taglar</span></div>
+        <div class="tag-cloud">
+            {% if common_tags %}
+            {% for obj in common_tags  %}
+            <a href="{% url 'taglist' obj.slug %}"> {{obj}} </a>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</aside>

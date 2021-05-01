@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block body %}
+
+
+<!-- start post content section -->
+<section>
+    <div class="container">
+        <div class="row flex-lg-row-reverse">
+            <main
+                class="col-12 col-lg-9 left-sidebar md-margin-60px-bottom sm-margin-40px-bottom pr-0 md-no-padding-left">
+
+                <div class="col-12 blog-details-comments">
+                    <div class="width-100 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
+                        <div class="position-relative overflow-hidden width-100">
+                            <span
+                                class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">{{obj.title}}</span>
+                        </div>
+                    </div>
+                    <ul class="blog-comment">
+                        <li>
+                            <div class="d-block d-md-flex  width-100">
+                                <div class="width-110px sm-width-50px text-center sm-margin-10px-bottom">
+                                    <img  {% if  obj.author.profileimage %}
+                                    src="{{obj.author.profileimage.url}}"
+                                    {% else %}
+                                    src="{{profile_image_url}}"
+                                    {% endif %} 
+                                        class="rounded-circle width-85 sm-width-100" alt="user" />
+                                </div>
+                                <div class="width-100 padding-40px-left last-paragraph-no-margin sm-no-padding-left">
+                                    <div class="text-small text-medium-gray text-uppercase margin-10px-bottom">
+                                        {{obj.created_date}} | {{obj.author}} </div>
+                                    <p>{{obj.main_context}}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {% for ans in answers %}
+
+                        <li>
+                            <div class="d-block d-md-flex  width-100">
+                                <div class="width-110px sm-width-50px text-center sm-margin-10px-bottom">
+                                    <img {% if  ans.author.profileimage %}
+                                    src="{{ans.author.profileimage.url}}"
+                                    {% else %}
+                                    src="{{profile_image_url}}"
+                                    {% endif %} 
+                                        class="rounded-circle width-85 sm-width-100" alt="" />
+                                </div>
+                                <div class="width-100 padding-40px-left last-paragraph-no-margin sm-no-padding-left">
+                                    <div class="text-small text-medium-gray text-uppercase margin-10px-bottom">17
+                                        {{ans.created_date}} | {{ans.author}}</div>
+                                    <p> {{ans.main_context}} </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="col-12 margin-eight-top" id="comments">
+                    <div class="divider-full bg-medium-light-gray"></div>
+                </div>
+
+                <div class="col-12 d-flex flex-wrap p-0">
+                    <div class="col-12 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
+                        <div class="position-relative overflow-hidden width-100">
+                            <span
+                                class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">görüşünü
+                                ekle</span>
+                        </div>
+                    </div>
+
+
+                    <form method="POST" class="">
+                        {% csrf_token %}
+
+
+                        <div class="col-12">
+                            {{ form }}
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button class="btn btn-dark-gray btn-small margin-15px-top" type="submit">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </main>
+
+            {% include "aside.html" %}
+        </div>
+    </div>
+</section>
+<!-- end blog content section -->
+
+{% endblock body %}
