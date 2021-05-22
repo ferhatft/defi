@@ -168,10 +168,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'src/static')
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static")
-# ]
+#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'src/static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 
 MEDIA_URL = '/media/'
@@ -203,3 +203,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # new
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED =True

@@ -46,7 +46,7 @@
 <!-- start parallax section -->
 <section
     class="wow fadeIn no-padding parallax one-fifth-screen md-height-500px sm-height-350px background-position-x-50"
-    data-stellar-background-ratio="0.4" {% if profileimage %}
+    data-stellar-background-ratio="0.4" {% if userprofile.profileimage %}
     style="background-image: url('{{userprofile.profileimage.url}}')" {% else %}
     style="background-image: url('{{profile_image_url}}')">
     {% endif %} >

@@ -38,7 +38,7 @@
                     <!-- end social links -->
                     <!-- start logo -->
                     <div class="col text-md-center pl-0 pl-md-3">
-                        <a class="logo" href="index.html"><img src="{% static 'defi/images/logo-white.png' %}"
+                        <a class="logo" href="{{home_url}}"><img src="{% static 'defi/images/logo-white.png' %}"
                                 data-rjs="{% static 'defi/images/logo-white@2x.png'%}" alt="defi"></a>
                     </div>
                     <!-- end logo -->
@@ -123,10 +123,10 @@
                                                     <ul class="dropdown-menu font-weight-300">
                                                         {% if 'news' in perms %}
                                                         {% if 'news.add_newsmodel' in perms %}
-                                                        <li><a href="{{news_url}}">Haber Ekle</a></li>
+                                                        <li><a href="{{new_create_url}}">Haber Ekle</a></li>
                                                         {% endif %}
                                                         {% endif %}
-                                                        <li><a href="{{new_create_url}}">En çok Okunanlar</a></li>
+                                                        <li><a href="{{news_url}}">En çok Okunanlar</a></li>
                                                     </ul>
                                                 </li>
 
@@ -172,16 +172,9 @@
             <div class="swiper-bottom-scrollbar-full swiper-container">
                 <div class="swiper-wrapper">
                     <!-- start slider item -->
-                    <div class="swiper-slide width-550px sm-width-100 sm-height-auto">
-                        <div
-                            class="position-relative width-90 height-100 d-flex align-items-center padding-ten-all sm-padding-fifteen-all sm-width-100">
+                    <div >
+                        <div>
                             <div>
-                                <h4 class="text-medium-gray d-block margin-5px-bottom alt-font">Merhaba,</h4>
-                                <h6 class="text-medium-gray font-weight-300 margin-20px-bottom alt-font">Lorem, ipsum
-                                    dolor.</h6>
-                                <p class="text-large d-block float-left font-weight-300 width-90 margin-35px-bottom">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, libero aspernatur?
-                                </p>
                                 <img src="images/signature.png" class="width-60 signature" alt="" />
                             </div>
                         </div>
@@ -239,63 +232,6 @@
                                         href="single-project-page-03.html">Defi Haber</a></h3>
                             </div>
                         </div>
-                    </div>
-                    <!-- end slider item -->
-                    <!-- start slider item -->
-                    <div class="swiper-slide width-auto sm-height-auto last-paragraph-no-margin">
-                        <div class="height-100 d-flex align-items-center">
-                            <div class="d-block position-relative">
-                                <img src="http://placehold.it/800x1000" alt="" />
-                                <p
-                                    class="bottom-text width-100 text-extra-small text-white-2 text-uppercase text-center">
-                                    Branding and Identity</p>
-                            </div>
-                            <div class="hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr">
-                                <div class="separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto">
-                                </div>
-                                <h3><a class="text-white-2 font-weight-600 alt-font text-white-2-hover"
-                                        href="single-project-page-04.html">HardDot Stone</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end slider item -->
-                    <!-- start slider item -->
-                    <div class="swiper-slide width-auto sm-height-auto last-paragraph-no-margin">
-                        <div class="height-100 d-flex align-items-center">
-                            <div class="d-block position-relative">
-                                <img src="http://placehold.it/800x1000" alt="" />
-                                <p
-                                    class="bottom-text width-100 text-extra-small text-white-2 text-uppercase text-center">
-                                    Web and Photography</p>
-                            </div>
-                            <div class="hover-title-box padding-55px-lr width-300px sm-width-100 sm-padding-20px-lr">
-                                <div class="separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto">
-                                </div>
-                                <h3><a class="text-white-2 font-weight-600 alt-font text-white-2-hover"
-                                        href="single-project-page-05.html">Violator Series</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end slider item -->
-                    <!-- start slider item -->
-                    <div class="swiper-slide width-auto sm-height-auto last-paragraph-no-margin">
-                        <div class="height-100 d-flex align-items-center">
-                            <div class="d-block position-relative">
-                                <img src="http://placehold.it/800x1000" alt="" />
-                                <p
-                                    class="bottom-text width-100 text-extra-small text-white-2 text-uppercase text-center">
-                                    Branding and Identity</p>
-                            </div>
-                            <div class="hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr">
-                                <div class="separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto">
-                                </div>
-                                <h3><a class="text-white-2 font-weight-600 alt-font text-white-2-hover"
-                                        href="single-project-page-01.html">Banana Design</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end slider item -->
-                    <div class="swiper-slide width-150px sm-width-100 sm-height-auto">
                     </div>
                 </div>
                 <!-- start slider swiper pagination -->
