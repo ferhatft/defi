@@ -10,11 +10,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
     <meta name="author" content="ThemeZaa">
     <!-- description -->
-    <meta name="description"
-        content="Defi">
+    <meta name="description" content="Defi">
     <!-- keywords -->
-    <meta name="keywords"
-        content="creative, modern, clean ">
+    <meta name="keywords" content="creative, modern, clean ">
     <!-- favicon -->
     <link rel="shortcut icon" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
@@ -86,7 +84,8 @@
     <!-- start header -->
     <header>
         <!-- start navigation -->
-        <nav class="navbar navbar-default bootsnav background-black header-dark   navbar-top nav-box-width white-link navbar-expand-lg">
+        <nav
+            class="navbar navbar-default bootsnav background-black header-dark   navbar-top nav-box-width white-link navbar-expand-lg">
             <div class="container-fluid nav-header-container">
                 <!-- start logo -->
                 <div class="col-auto pl-0">
@@ -117,59 +116,46 @@
                             <li class="dropdown simple-dropdown"><a href="{{dic_url}}">Defisözlük</a><i
                                     class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
                                     aria-hidden="true"></i>
-                                <!-- start sub menu -->
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
-                                            href="{{dic_create_url}}">Görüş Belirt<i class="fas fa-angle-right"></i></a>
-
-                                    </li>
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
-                                            href="{{dic_url}}">En
-                                            çok Okunanlar<i class="fas fa-angle-right"></i></a>
-                                    </li>
-                                </ul>
                             </li>
                             <!-- Defibilgi -->
                             <li class="dropdown simple-dropdown"><a href="{{inf_url}}">Defibilgi</a><i
                                     class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
                                     aria-hidden="true"></i>
                                 <!-- start sub menu -->
+
+
+                                {% if 'bilgi' in perms %}
+                                {% if 'bilgi.add_i̇nformationmodel' in perms %}
+
                                 <ul class="dropdown-menu" role="menu">
 
-
-                                    {% if 'bilgi' in perms %}
-                                    {% if 'bilgi.add_i̇nformationmodel' in perms %}
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href=" {{inf_create_url}} ">Yeni Gönderi<i
                                                 class="fas fa-angle-right"></i></a> </li>
-                                    {% endif %}
-                                    {% endif %}
 
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
-                                            href=" {{inf_url}} ">En
-                                            çok Okunanlar<i class="fas fa-angle-right"></i></a>
-                                    </li>
+
                                 </ul>
+                                {% endif %}
+                                {% endif %}
+
                             </li>
                             <!-- Defihaber -->
                             <li class="dropdown simple-dropdown"><a href="{{news_url}}">Defihaber</a><i
                                     class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
                                     aria-hidden="true"></i>
                                 <!-- start sub menu -->
-                                <ul class="dropdown-menu" role="menu">
 
-                                    {% if 'news' in perms %}
-                                    {% if 'news.add_newsmodel' in perms %}
+
+                                {% if 'news' in perms %}
+                                {% if 'news.add_newsmodel' in perms %}
+                                <ul class="dropdown-menu" role="menu">
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href=" {{new_create_url}} ">Haber Ekle<i class="fas fa-angle-right"></i></a>
                                     </li>
-                                    {% endif %}
-                                    {% endif %}
 
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="{{news_url}}">En
-                                            çok Okunanlar<i class="fas fa-angle-right"></i></a>
-                                    </li>
                                 </ul>
+                                {% endif %}
+                                {% endif %}
                             </li>
 
 

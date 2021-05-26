@@ -5,13 +5,10 @@
 
 <div class="box-layout">
     {% if anahaber %}
-
-
     <!-- start slider section -->
     <section class="wow fadeIn p-0 main-slider h-100 mobile-height">
         <div class="swiper-full-screen swiper-container h-100 w-100 black-move">
             <div class="swiper-wrapper">
-
                 {% for obj in anahaber  %}
                 <!-- start slider item -->
                 <div class="swiper-slide cover-background sm-background-image-center"
@@ -38,70 +35,6 @@
     </section>
     <!-- end slider section -->
     {% endif %}
-
-
-    {% if  sliderhaber %}
-
-
-
-
-    <!-- start portfolio section -->
-    <section class="wow fadeIn">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 hover-option4 margin-5px-bottom">
-                    <div class="swiper-multy-row-container overflow-hidden">
-                        <div class="swiper-wrapper">
-
-
-                            {% for obj in sliderhaber  %}
-
-                            <!-- start slide item -->
-                            <div class="swiper-slide grid-item">
-                                <a href="{{obj.get_absolute_url}}">
-                                    <figure>
-                                        <div class="portfolio-img bg-extra-dark-gray">
-                                            <img src="{{obj.backimage.url}}" alt="" />
-                                        </div>
-                                        <figcaption>
-                                            <div class="portfolio-hover-main text-center">
-                                                <div class="portfolio-hover-box align-middle">
-                                                    <div
-                                                        class="portfolio-hover-content position-relative last-paragraph-no-margin">
-                                                        <p class="text-medium-gray text-uppercase text-extra-small">
-                                                            {% if obj.tags.all %}
-                                                                {% for tag in obj.tags.all  %}
-                                                                {{tag.name}},
-                                                                {% endfor %}
-                                                            {% endif %}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                            <!-- end slide item -->
-
-                            {% endfor %}
-
-                        </div>
-                        <!-- start slider pagination -->
-
-                        <div class="swiper-pagination swiper-pagination-square   swiper-multy-row-pagination"></div>
-                        <div class="swiper-portfolio-prev swiper-button-black-highlight"><i class="ti-arrow-left"></i>
-                        </div>
-                        <div class="swiper-portfolio-next swiper-button-black-highlight"><i class="ti-arrow-right"></i>
-                        </div>
-                        <!-- end slider pagination -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end portfolio section -->
-    {% endif %}
-
 </div>
 
 

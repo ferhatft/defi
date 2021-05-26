@@ -26,9 +26,8 @@ from django.db.models import Q
 def news(request, tag_slug=None, *args, **kwargs):
 
     obj = NewsModel.objects.all()
-    rest = obj.filter(anahaber=False,sliderhaber=False)
+    rest = obj.filter(anahaber=False)
     anahaber = obj.filter(anahaber=True)
-    sliderhaber = obj.filter(sliderhaber=True)
     
 
     new_by_coms = NewsModel.objects.all() \
@@ -62,7 +61,6 @@ def news(request, tag_slug=None, *args, **kwargs):
 
     context = {
         'rest': rest,
-        'sliderhaber':sliderhaber,
         'anahaber':anahaber,
         'new_by_coms': new_by_coms,
         'common_tags': common_tags,

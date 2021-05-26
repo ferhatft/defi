@@ -18003,3 +18003,8 @@ aside .latest-post li figure {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999
 }
+
+
+.bg-gift{
+    background-image: url( ../images/giphy.gif);
+}

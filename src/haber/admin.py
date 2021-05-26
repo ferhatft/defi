@@ -16,7 +16,7 @@ class NewsModelAdmin(admin.ModelAdmin):
 
     inlines = (AnswerinlineModelAdmin,)
 
-    fields = ('title', 'tags','slug','author','backimage','rating','created_date' , 'intro','anahaber','sliderhaber',)
+    fields = ('title', 'tags','slug','author','backimage','rating','created_date' , 'intro','anahaber',)
 
     readonly_fields = ('rating','created_date')
 

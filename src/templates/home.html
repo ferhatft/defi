@@ -15,7 +15,7 @@
     {% block body %}
 
 
-    <div class="bg-black position-absolute left-0 top-0 width-100 height-100">
+    <div class="bg-black bg-gift position-absolute left-0 top-0 width-100 height-100">
         <!-- start header -->
         <header>
             <!-- Start navigation -->
@@ -80,9 +80,9 @@
                                                         <li><a href="/accounts/profile/"> Profil </a></li>
                                                         <li><a href="/accounts/logout/"> Çıkış </a></li>
                                                         {% else %}
-                                                        
+
                                                         <li><a href="/accounts/login/"> Giriş </a></li>
-                                                        
+
                                                         <li><a href="/accounts/signup/"> Kayıt </a></li>
 
 
@@ -167,12 +167,78 @@
             <!-- end navigation -->
         </header>
         <!-- end header -->
+        <!-- start fancy text box style 03 section -->
+        <section style="height: 100vh" class=" wow fadeIn">
+            <div style="padding-top: 17vh;" class="container ">
+                <div class="row">
+
+                    <!-- feature box item-->
+                    <div class="col-12 col-md-4 sm-margin-five-bottom last-paragraph-no-margin wow fadeInUp"
+                        data-wow-delay="0.2s">
+                        <a href="{{dict_url}}">
+                            <div class="feature-box">
+                                <div class="content">
+                                    <i
+                                        class="icon-book-open text-medium-gray icon-large margin-25px-bottom md-margin-15px-bottom"></i>
+                                    <div
+                                        class="text-medium alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
+                                        Defi sözlük</div>
+                                    <p class="width-85 mx-auto md-width-100">Lorem Ipsum is simply dummy text of the
+                                        printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- end feature box item-->
+                    <!-- feature box item-->
+                    <div class="col-12 col-md-4 sm-margin-five-bottom last-paragraph-no-margin wow fadeInUp">
+
+                        <a href="{{news_url}}">
+                            <div class="feature-box">
+                                <div class="content">
+                                    <i
+                                        class="icon-browser text-medium-gray icon-large margin-25px-bottom md-margin-15px-bottom"></i>
+                                    <div
+                                        class="text-medium alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
+                                        Defi haber</div>
+                                    <p class="width-85 mx-auto md-width-100">Lorem Ipsum is simply dummy text of the
+                                        printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- end feature box item-->
+
+                    <!-- feature box item-->
+                    <div class="col-12 col-md-4 sm-margin-five-bottom last-paragraph-no-margin wow fadeInUp"
+                        data-wow-delay="0.4s">
+                        <a href="{{inf_url}}">
+                            <div class="feature-box">
+                                <div class="content">
+                                    <i
+                                        class="icon-wallet text-medium-gray icon-large margin-25px-bottom md-margin-15px-bottom"></i>
+                                    <div
+                                        class="text-medium alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
+                                        Defi bilgi</div>
+                                    <p class="width-85 mx-auto md-width-100">Lorem Ipsum is simply dummy text of the
+                                        printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- end feature box item-->
+                </div>
+            </div>
+        </section>
+        <!-- end fancy text box style 03 section -->
+
+        {% comment %}
         <!-- start slider section -->
         <section class="p-0">
             <div class="swiper-bottom-scrollbar-full swiper-container">
                 <div class="swiper-wrapper">
                     <!-- start slider item -->
-                    <div >
+                    <div>
                         <div>
                             <div>
                                 <img src="images/signature.png" class="width-60 signature" alt="" />
@@ -240,7 +306,10 @@
                 <!-- end slider swiper pagination -->
             </div>
         </section>
-        <!-- end slider section -->
+        <!-- end slider section --> {% endcomment %}
+
+
+
     </div>
 
     {% endblock body %}

@@ -15,7 +15,6 @@ class NewsModel(models.Model):
     slug                    = models.SlugField(blank=True, null=True,verbose_name='uzantı')
     tags                    = TaggableManager()
     anahaber                = models.BooleanField(default=False,verbose_name='ana haber')
-    sliderhaber             = models.BooleanField(default=False,verbose_name='slider ekle')
     rating                  = models.DecimalField(max_digits=6, decimal_places=0, null=True, blank=True,verbose_name="Öne çıkarma")
     author                  = models.ForeignKey(UserProfile, on_delete=models.CASCADE,verbose_name='Haber Sahibi')
     created_date            = models.DateTimeField(auto_now_add=True,null=True,verbose_name="Oluşturulma Tarihi")
