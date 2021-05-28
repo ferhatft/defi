@@ -159,8 +159,8 @@ def Addbilgi(request):
 
 @login_required
 def infromation_update(request, slug):
-    print(request.user.perms())
-    if not request.user.has_perm('information.change_infromation'):
+
+    if not request.user.has_perm('bilgi.change_i̇nformationmodel'):
         context = {
         }
         return render(request, "need-perm.html", context)
@@ -173,7 +173,7 @@ def infromation_update(request, slug):
     try:
         userprofile = get_object_or_404(UserProfile, user=request.user)
 
-        if request.user.has_perm('information.change_infromation'):
+        if request.user.has_perm('bilgi.change_i̇nformationmodel'):
             print('yes')
         else:
             print('no')

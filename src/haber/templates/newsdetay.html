@@ -37,12 +37,12 @@
                 </span>
                 <div class="row justify-content-center text-center">
 
-                    {% if 'news' in perms %}
-                    {% if 'news.update_newsmodel' in perms %}
+                    {% if 'haber' in perms %}
+                    {% if 'haber.change_newsmodel' in perms %}
                     <a class="btn btn-very-small btn-white btn-rounded lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto"
                         href=" {{news.get_update_url}} ">Düzenle</a>
                     {% endif %}
-                    {% if 'news.delete_newsmodel' in perms %}
+                    {% if 'haber.delete_newsmodel' in perms %}
                     <a class="btn btn-very-small btn-white btn-rounded lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto"
                         href=" {{news.get_delete_url}} ">Sil</a>
                     {% endif %}

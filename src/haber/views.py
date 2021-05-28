@@ -167,7 +167,7 @@ def Addnews(request):
 
 @login_required
 def new_update(request, slug):
-    if not request.user.has_perm('haber.newsmodel_update'):
+    if not request.user.has_perm('haber.change_newsmodel'):
         context = {
         }
         return render(request, "need-perm.html", context)
@@ -180,7 +180,7 @@ def new_update(request, slug):
     try:
         userprofile = get_object_or_404(UserProfile, user=request.user)
 
-        if request.user.has_perm('haber.newsmodel_update'):
+        if request.user.has_perm('haber.change_newsmodel'):
             print('yes')
         else:
             print('no')
