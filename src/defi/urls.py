@@ -29,4 +29,5 @@ urlpatterns = [
     path('dictionary/', include('dictionary.urls')),
     path('information/', include('bilgi.urls')),
     path('news/', include('haber.urls')),
+    path('iletisim/', include("iletisim.urls"))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

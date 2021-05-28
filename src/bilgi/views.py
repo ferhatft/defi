@@ -159,7 +159,8 @@ def Addbilgi(request):
 
 @login_required
 def infromation_update(request, slug):
-    if not request.user.has_perm('information.infromation_update'):
+    print(request.user.perms())
+    if not request.user.has_perm('information.change_infromation'):
         context = {
         }
         return render(request, "need-perm.html", context)
@@ -172,7 +173,7 @@ def infromation_update(request, slug):
     try:
         userprofile = get_object_or_404(UserProfile, user=request.user)
 
-        if request.user.has_perm('information.infromation_update'):
+        if request.user.has_perm('information.change_infromation'):
             print('yes')
         else:
             print('no')
@@ -192,11 +193,12 @@ def infromation_update(request, slug):
             
             form.save(commit=False)
             form.instance.author = userprofile
+            
 
             form.save()
 
-            # uzantı =  title.lower().replace(' ','-')
-            return redirect(reverse("bilgidetay", kwargs={'slug': slug}))
+            uzantı =  infoobj.slug
+            return redirect(reverse("bilgidetay", kwargs={'slug': uzantı}))
             
     context = {
         'form': form

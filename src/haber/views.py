@@ -203,8 +203,9 @@ def new_update(request, slug):
 
             form.save()
 
-            # uzantı =  title.lower().replace(' ','-')
-            return redirect(reverse("newsdetay", kwargs={'slug': slug}))
+            uzantı = newobj.slug
+
+            return redirect(reverse("newsdetay", kwargs={'slug': uzantı}))
             
     context = {
         'form': form

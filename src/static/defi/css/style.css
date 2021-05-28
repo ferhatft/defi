@@ -316,6 +316,11 @@ h6 {
     line-height: 26px
 }
 
+.text-xx-large {
+    font-size: 30px;
+    line-height: 29px
+}
+
 .title-large {
     font-size: 100px;
     line-height: 95px

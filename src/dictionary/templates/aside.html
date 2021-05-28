@@ -24,9 +24,41 @@
             <li><a href="{{obj.get_absolute_url}}">{{ obj.title}}</a><span> {{obj.dictionaryanswers.count}} </span>
             </li>
             {% endfor %}
-            <a href=" {{all_dict_url}} "
+
+            {% if qlist == 'all' %}
+
+
+            <a href="{{dict_url}}"
+                class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Daha
+                Az</a>
+
+            {% else %}
+            <a href="{{dict_url}}?list=all"
                 class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Daha
                 Fazla</a>
+
+            {% endif %}
+
+
+            {% if qsort == 'newest' %}
+
+            <a href="{{dict_url}}"
+                class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">En
+                Popüler
+            </a>
+
+            {% else %}
+
+            <a href="{{dict_url}}?sort=newest"
+                class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">En
+                yeniler
+            </a>
+
+            {% endif %}
+
+
+
+
             {% else %}
 
             {% for obj in all_dic_by_coms  %}
@@ -36,6 +68,9 @@
             <a href=" {{dict_url}} "
                 class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">Daha
                 Az </a>
+            <a href=" {{dict_url}}?sort=newest"
+                class="btn btn-very-small btn-dark-gray text-very-small border-radius-4 lg-margin-15px-bottom d-table d-lg-inline-block md-margin-lr-auto">En
+                yeniler</a>
             {% endif %}
 
 

@@ -71,9 +71,27 @@
                                             <!-- start menu -->
                                             <ul class="font-weight-600 sm-no-padding-left">
 
+
+
                                                 <!-- start menu item -->
                                                 <li class="dropdown">
-                                                    <a href="javascript:void(0);">Hesabım</a><span
+                                                    <a href="{{dic_url}}">Defisözlük</a>
+                                                </li>
+                                                <!-- end menu item -->
+                                                <!-- start menu item -->
+                                                <li class="dropdown">
+                                                    <a href="{{inf_url}}">Defibilgi</a>
+
+                                                </li>
+                                                <!-- end menu item -->
+                                                <!-- start menu item -->
+                                                <li class="dropdown">
+                                                    <a href="{{news_url}}">Defihaber</a>
+                                                </li>
+                                                <!-- start menu item -->
+                                                <li class="dropdown">
+                                                    <a data-toggle="dropdown"
+                                                        href="javascript:void(0);">Hesabım</a><span
                                                         data-toggle="dropdown" class="dropdown-toggle"></span>
                                                     <ul class="dropdown-menu font-weight-300">
                                                         {% if request.user.is_authenticated %}
@@ -90,45 +108,6 @@
                                                     </ul>
                                                 </li>
                                                 <!-- end menu item -->
-
-                                                <!-- start menu item -->
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Defisözlük</a><span
-                                                        data-toggle="dropdown" class="dropdown-toggle"></span>
-                                                    <ul class="dropdown-menu font-weight-300">
-                                                        <li><a href="{{dic_create_url}}">Görüş Belirt</a></li>
-                                                        <li><a href="{{dic_url}}">En çok Okunanlar</a></li>
-                                                    </ul>
-                                                </li>
-                                                <!-- end menu item -->
-                                                <!-- start menu item -->
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Defibilgi</a><span
-                                                        data-toggle="dropdown" class="dropdown-toggle"></span>
-                                                    <ul class="dropdown-menu font-weight-300">
-
-                                                        {% if 'bilgi' in perms %}
-                                                        {% if 'bilgi.add_i̇nformationmodel' in perms %}
-                                                        <li><a href="{{inf_create_url}}">Yeni Gönderi</a></li>
-                                                        {% endif %}
-                                                        {% endif %}
-                                                        <li><a href="{{inf_url}} ">En çok Okunanlar</a></li>
-                                                    </ul>
-                                                </li>
-                                                <!-- end menu item -->
-                                                <!-- start menu item -->
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Defihaber</a><span
-                                                        data-toggle="dropdown" class="dropdown-toggle"></span>
-                                                    <ul class="dropdown-menu font-weight-300">
-                                                        {% if 'news' in perms %}
-                                                        {% if 'news.add_newsmodel' in perms %}
-                                                        <li><a href="{{new_create_url}}">Haber Ekle</a></li>
-                                                        {% endif %}
-                                                        {% endif %}
-                                                        <li><a href="{{news_url}}">En çok Okunanlar</a></li>
-                                                    </ul>
-                                                </li>
 
                                             </ul>
                                             <!-- end menu -->
@@ -178,13 +157,9 @@
                         <a href="{{dict_url}}">
                             <div class="feature-box">
                                 <div class="content">
-                                    <i
-                                        class="icon-book-open text-medium-gray icon-large margin-25px-bottom md-margin-15px-bottom"></i>
                                     <div
-                                        class="text-medium alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
+                                        class="text-xx-large text-white-2 alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
                                         Defi sözlük</div>
-                                    <p class="width-85 mx-auto md-width-100">Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry.</p>
                                 </div>
                             </div>
                         </a>
@@ -196,13 +171,9 @@
                         <a href="{{news_url}}">
                             <div class="feature-box">
                                 <div class="content">
-                                    <i
-                                        class="icon-browser text-medium-gray icon-large margin-25px-bottom md-margin-15px-bottom"></i>
                                     <div
-                                        class="text-medium alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
+                                        class="text-xx-large text-white-2 alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
                                         Defi haber</div>
-                                    <p class="width-85 mx-auto md-width-100">Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry.</p>
                                 </div>
                             </div>
                         </a>
@@ -215,13 +186,9 @@
                         <a href="{{inf_url}}">
                             <div class="feature-box">
                                 <div class="content">
-                                    <i
-                                        class="icon-wallet text-medium-gray icon-large margin-25px-bottom md-margin-15px-bottom"></i>
                                     <div
-                                        class="text-medium alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
+                                        class="text-xx-large  text-white-2 alt-font text-capitalize  margin-10px-bottom md-margin-5px-bottom">
                                         Defi bilgi</div>
-                                    <p class="width-85 mx-auto md-width-100">Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry.</p>
                                 </div>
                             </div>
                         </a>
@@ -232,81 +199,6 @@
         </section>
         <!-- end fancy text box style 03 section -->
 
-        {% comment %}
-        <!-- start slider section -->
-        <section class="p-0">
-            <div class="swiper-bottom-scrollbar-full swiper-container">
-                <div class="swiper-wrapper">
-                    <!-- start slider item -->
-                    <div>
-                        <div>
-                            <div>
-                                <img src="images/signature.png" class="width-60 signature" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end slider item -->
-                    <!-- start slider item -->
-                    <div class="swiper-slide width-auto sm-height-auto last-paragraph-no-margin">
-                        <div class="height-100 d-flex align-items-center">
-                            <div class="d-block position-relative">
-                                <img src="http://placehold.it/1300x1000" alt="" />
-                                <p
-                                    class="bottom-text width-100 text-extra-small text-white-2 text-uppercase text-center">
-                                    Branding and Identity</p>
-                            </div>
-                            <div class="hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr">
-                                <div class="separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto">
-                                </div>
-                                <h3><a class="text-white-2 font-weight-600 alt-font text-white-2-hover"
-                                        href="{{dic_url}}">Defi Sözlük</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end slider item -->
-                    <!-- start slider item -->
-                    <div class="swiper-slide width-auto sm-height-auto last-paragraph-no-margin">
-                        <div class="height-100 d-flex align-items-center">
-                            <div class="d-block position-relative">
-                                <img src="http://placehold.it/800x1000" alt="" />
-                                <p
-                                    class="bottom-text width-100 text-extra-small text-white-2 text-uppercase text-center">
-                                    Branding and Brochure</p>
-                            </div>
-                            <div class="hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr">
-                                <div class="separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto">
-                                </div>
-                                <h3><a class="text-white-2 font-weight-600 alt-font text-white-2-hover"
-                                        href="{{inf_url}}">Defi Bilgi</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end slider item -->
-                    <!-- start slider item -->
-                    <div class="swiper-slide width-auto sm-height-auto last-paragraph-no-margin">
-                        <div class="height-100 d-flex align-items-center">
-                            <div class="d-block position-relative">
-                                <img src="http://placehold.it/1300x1000" alt="" />
-                                <p
-                                    class="bottom-text width-100 text-extra-small text-white-2 text-uppercase text-center">
-                                    Web and Photography</p>
-                            </div>
-                            <div class="hover-title-box padding-55px-lr width-300px md-width-100 md-padding-20px-lr">
-                                <div class="separator width-50px bg-black d-none d-xl-inline-block sm-margin-lr-auto">
-                                </div>
-                                <h3><a class="text-white-2 font-weight-600 alt-font text-white-2-hover"
-                                        href="single-project-page-03.html">Defi Haber</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- start slider swiper pagination -->
-                <div class="swiper-scrollbar d-none d-md-inline-block"></div>
-                <div class="swiper-pagination-vertical position-fixed bullet-deep-pink z-index-5"></div>
-                <!-- end slider swiper pagination -->
-            </div>
-        </section>
-        <!-- end slider section --> {% endcomment %}
 
 
 

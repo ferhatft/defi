@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<!-- start form style 03 section -->
+<section class="wow fadeIn bg-light-gray">
+  <div class="container">
+    <form id="contact-form-3" method="post">
+      {% csrf_token %}
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 wow fadeIn">
+          <div class="padding-fifteen-all bg-white border-radius-6 lg-padding-seven-all">
+            <div class="text-extra-dark-gray alt-font text-large font-weight-600 margin-30px-bottom">Aklına takılan bir
+              şey mi var ?</div>
+            {{form.name}}
+            {{form.email}}
+            {{form.subject}}
+            {{form.message}}
+            <button id="contact-us-button-3" type="submit" class="btn btn-small border-radius-4 btn-black">İletişime
+              Geç</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock body %}

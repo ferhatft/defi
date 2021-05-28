@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import DictionaryModel,ReporModel
-from .forms import DictionaryForm, AnswerinlineModelForm,ReportModelForm
+from django.utils.html import escape
+from .models import DictionaryModel, ReporModel
+from .forms import DictionaryForm, AnswerinlineModelForm, ReportModelForm
 from profiles.models import UserProfile
 from taggit.models import Tag
 
@@ -20,18 +21,12 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
     if 'scrollid' in request.session:
         scrollid = request.session['scrollid']
     else:
-        scrollid = None 
+        scrollid = None
         print("session hatarı ___________________________")
-
-
-
-    dic_by_coms = DictionaryModel.objects.all() \
-        .annotate(num_posts=Count('dictionaryanswers')) \
-        .order_by('-num_posts')[:10]
 
     common_tags = DictionaryModel.tags.most_common()[:20]
     try:
-        userprofiletuple =  UserProfile.objects.get_or_create(user=request.user)
+        userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
         userprofile = userprofiletuple[0]
     except:
         userprofile = 'AnonymousUser'
@@ -53,7 +48,7 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
 
                 new_dict = form.save()
 
-                return redirect(reverse("dictionarydetail", kwargs={'cats': new_dict.slug }))
+                return redirect(reverse("dictionarydetail", kwargs={'cats': new_dict.slug}))
         else:
             return HttpResponseRedirect('/accounts/login/')
     else:
@@ -68,6 +63,42 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
             queries = Q(title__icontains=query) | Q(
                 main_context__icontains=query)
             dictionaryies = dictionaryies.filter(queries)
+            
+        
+        try:
+            qlist = request.GET['list']
+        except:
+            qlist = 'None'
+        try:
+            qsort = request.GET['sort']
+            print(qsort)
+        except:
+            qsort = 'None'
+
+        if 'list' in request.GET or 'sort' in request.GET:
+            if qsort == 'newest' and qlist == 'all':
+                dic_by_coms = DictionaryModel.objects.all() \
+                    .annotate(num_posts=Count('dictionaryanswers')) \
+                    .order_by('-created_date')
+            if qsort == 'newest' and qlist != 'all':
+                dic_by_coms = DictionaryModel.objects.all() \
+                    .annotate(num_posts=Count('dictionaryanswers')) \
+                    .order_by('-created_date')[:10]
+            if qsort != 'newest' and qlist == 'all':
+                dic_by_coms = DictionaryModel.objects.all() \
+                    .annotate(num_posts=Count('dictionaryanswers')) \
+                    .order_by('-num_posts')
+
+            if qsort != 'newest' and qlist != 'all':
+                dic_by_coms = DictionaryModel.objects.all() \
+                    .annotate(num_posts=Count('dictionaryanswers')) \
+                    .order_by('-num_posts')[:10]
+
+        else:
+            dic_by_coms = DictionaryModel.objects.all() \
+                .annotate(num_posts=Count('dictionaryanswers')) \
+                .order_by('-num_posts')[:10]
+
     context = {
         'dictionaryies': dictionaryies,
         'dic_by_coms': dic_by_coms,
@@ -75,12 +106,12 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
         'userprofile': userprofile,
         'form': form,
         'tag': tag,
-        'scrollid':scrollid,
+        'scrollid': scrollid,
+        'qlist':qlist,
+        'qsort':qsort,
     }
 
     return render(request, "dictionary.html", context)
-
-
 
 
 def all_dictionary(request, tag_slug=None, *args, **kwargs):
@@ -93,7 +124,7 @@ def all_dictionary(request, tag_slug=None, *args, **kwargs):
 
     common_tags = DictionaryModel.tags.most_common()[:20]
     try:
-        userprofiletuple =  UserProfile.objects.get_or_create(user=request.user)
+        userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
         userprofile = userprofiletuple[0]
     except:
         userprofile = 'AnonymousUser'
@@ -103,7 +134,6 @@ def all_dictionary(request, tag_slug=None, *args, **kwargs):
     else:
         tag = None
 
-  
     context = {
         'dictionaryies': dictionaryies,
         'all_dic_by_coms': all_dic_by_coms,
@@ -113,7 +143,6 @@ def all_dictionary(request, tag_slug=None, *args, **kwargs):
     }
 
     return render(request, "dictionary.html", context)
-
 
 
 def dictionarydetail(request, cats):
@@ -130,7 +159,8 @@ def dictionarydetail(request, cats):
 
     if request.method == 'POST':
         try:
-            userprofiletuple =  UserProfile.objects.get_or_create(user=request.user)
+            userprofiletuple = UserProfile.objects.get_or_create(
+                user=request.user)
             userprofile = userprofiletuple[0]
         except:
             userprofile = 'AnonymousUser'
@@ -164,7 +194,7 @@ def dictionarydetail(request, cats):
 @login_required
 def dictionary_create(request):
     try:
-        userprofiletuple =  UserProfile.objects.get_or_create(user=request.user)
+        userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
         userprofile = userprofiletuple[0]
     except:
         userprofile = 'AnonymousUser'
@@ -204,7 +234,7 @@ def dictionary_update(request, slug):
         request.FILES or None,
         instance=dictionary)
     try:
-        userprofiletuple =  UserProfile.objects.get_or_create(user=request.user)
+        userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
         userprofile = userprofiletuple[0]
     except:
         userprofile = 'AnonymousUser'
@@ -227,6 +257,7 @@ def dictionary_update(request, slug):
     }
     return render(request, "dictionary-update.html", context)
 
+
 @login_required
 def dictionary_delete(request, slug):
     dictionary = get_object_or_404(DictionaryModel, slug=slug)
@@ -235,10 +266,10 @@ def dictionary_delete(request, slug):
 
 
 @login_required
-def dictionary_report(request,slug):
-    
+def dictionary_report(request, slug):
+
     dictionary = get_object_or_404(DictionaryModel, slug=slug)
-    userprofiletuple =  UserProfile.objects.get_or_create(user=request.user)
+    userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
     userprofile = userprofiletuple[0]
 
     if request.method == 'POST':
@@ -252,32 +283,34 @@ def dictionary_report(request,slug):
                 form.instance.dictionary = dictionary
 
                 form.save()
-                
+
                 reportid = str(ReporModel.objects.last().id)
 
-                useremail = userprofile.user.email 
-                send_mail (
-                'Yeni Bir şikayet var ', # subject
-                main_context + '\n' +  'link = ' + 'http://localhost:8000/admin/dictionary/repormodel/'+ reportid +'/change/' + '\n' , #message
-                'tugrul.tf51@gmail.com', #from email admin
-                ['tugrul.tf51@gmail.com'], # To email    
+                useremail = userprofile.user.email
+                send_mail(
+                    'Yeni Bir şikayet var ',  # subject
+                    main_context + '\n' + 'link = ' + 'http://localhost:8000/admin/dictionary/repormodel/' + \
+                    reportid + '/change/' + '\n',  # message
+                    'tugrul.tf51@gmail.com',  # from email admin
+                    ['tugrul.tf51@gmail.com'],  # To email
                 )
 
-                send_mail (
-                'Bildiriminiz İçin teşekkür ederiz', # subject
-                'İletişime geçtiğiniz için teşekkür ederiz en kısa sürede size dönüş yapılacaktır', #message
-                'tugrul.tf51@gmail.com', #from email
-                [useremail], # To email    
+                send_mail(
+                    'Bildiriminiz İçin teşekkür ederiz',  # subject
+                    'İletişime geçtiğiniz için teşekkür ederiz en kısa sürede size dönüş yapılacaktır',  # message
+                    'tugrul.tf51@gmail.com',  # from email
+                    [useremail],  # To email
                 )
 
-                return redirect('dictionary') # teşekkür sayfasına göndeririz sonrasında 
+                # teşekkür sayfasına göndeririz sonrasında
+                return redirect('dictionary')
         else:
             return HttpResponseRedirect('/accounts/login/')
     else:
         form = ReportModelForm()
 
     context = {
-        'dictionary':dictionary,
+        'dictionary': dictionary,
         'userprofile': userprofile,
         'form': form,
     }
@@ -285,20 +318,19 @@ def dictionary_report(request,slug):
     return render(request, "dictionary_report.html", context)
 
 
-
-
 @login_required
-def dic_upwote(request,id):
+def dic_upwote(request, id):
     user_id = request.user.id
 
     if request.method == "POST":
-        dictionary = get_object_or_404(DictionaryModel, id=request.POST.get('dict_id') )
+        dictionary = get_object_or_404(
+            DictionaryModel, id=request.POST.get('dict_id'))
         if dictionary.votes.exists(user_id):
             dictionary.votes.delete(user_id)
-        else:   
+        else:
             dictionary.votes.up(user_id)
     else:
-        url = request.path 
+        url = request.path
         a = url.rsplit('/')
         dic_id = a[3]
 
@@ -306,27 +338,28 @@ def dic_upwote(request,id):
 
         if dictionary.votes.exists(user_id):
             dictionary.votes.delete(user_id)
-        else:   
+        else:
             dictionary.votes.up(user_id)
 
-    
     request.session['scrollid'] = id
 
     return redirect(reverse("dictionary"))
     # return redirect(reverse("dictionary", kwargs={'scrollid': id}))
 
+
 @login_required
-def dic_dawnvote(request,id):
+def dic_dawnvote(request, id):
     user_id = request.user.id
 
     if request.method == "POST":
-        dictionary = get_object_or_404(DictionaryModel, id=request.POST.get('dict_id') )
+        dictionary = get_object_or_404(
+            DictionaryModel, id=request.POST.get('dict_id'))
         if dictionary.votes.exists(user_id):
             dictionary.votes.delete(user_id)
-        else:   
+        else:
             dictionary.votes.down(user_id)
     else:
-        url = request.path 
+        url = request.path
         a = url.rsplit('/')
         dic_id = a[3]
 
@@ -334,13 +367,9 @@ def dic_dawnvote(request,id):
 
         if dictionary.votes.exists(user_id):
             dictionary.votes.delete(user_id)
-        else:   
+        else:
             dictionary.votes.down(user_id)
 
     request.session['scrollid'] = id
 
     return redirect(reverse("dictionary"))
-
-
-
-
