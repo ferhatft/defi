@@ -35,9 +35,9 @@
                     <ul class="blog-comment">
 
                         {% if dictionaryies %}
-                        {% for obj in dictionaryies  %}
+                        {% for obj in dics  %}
                         <li id="{{obj.id}}">
-                            <div  class="d-block d-md-flex  width-100">
+                            <div class="d-block d-md-flex  width-100">
                                 <div class="width-110px sm-width-50px text-center sm-margin-10px-bottom">
                                     <img {% if obj.author.profileimage %} src="{{obj.author.profileimage.url}}"
                                         {% else %} src="{{profile_image_url}}" {% endif %}
@@ -62,7 +62,8 @@
 
 
                                     <div class="text-small text-medium-gray  margin-10px-bottom">
-                                        {{obj.author}} | {{obj.created_date}} </div>
+                                        <a href="{{obj.get_absolute_url}}">
+                                            {{obj.author}} </a>| {{obj.created_date}} </div>
                                     <p> {{obj.main_context}} </p>
 
                                     {% if obj.tags.all %}
@@ -105,12 +106,12 @@
 
                                         <a href="http://www.facebook.com/share.php?u={{ request.build_absolute_uri }}{{obj.slug}}"
                                             class="btn margin-15px-top"><i class="fab fa-facebook-f votebtn"></i></a>
-                                            
+
                                         <a href="https://twitter.com/intent/tweet?via=instelacom&url={{ request.build_absolute_uri }}{{obj.slug}}"
                                             class="btn margin-15px-top"><i class="fab fa-twitter votebtn"></i></a>
 
-                                        <a href="{{request.path}}report/{{obj.slug}}"
-                                            class="btn margin-15px-top"><i class="fab fa-font-awesome-flag votebtn"></i></a>
+                                        <a href="{{request.path}}report/{{obj.slug}}" class="btn margin-15px-top"><i
+                                                class="fab fa-font-awesome-flag votebtn"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +126,9 @@
                 <div id="defisözlük" class="col-12 d-flex flex-wrap p-0">
                     <div class="col-12 mx-auto text-center margin-80px-tb md-margin-50px-tb sm-margin-30px-tb">
                         <div class="position-relative overflow-hidden width-100">
-                            <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">görüşünü belirt</span>
+                            <span
+                                class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">görüşünü
+                                belirt</span>
                         </div>
                     </div>
 
@@ -153,10 +156,73 @@
                         </div>
                     </form>
                 </div>
+
+                <!-- start pagination -->
+                <div class="col-12 text-center margin-100px-top md-margin-50px-top wow fadeInUp">
+                    <div class="pagination text-small text-uppercase text-extra-dark-gray">
+                        <ul class="mx-auto">
+                     
+                            {% if dics.has_previous %}
+                            <li>
+                                <a href="?page={{ dics.previous_page_number }}">
+                                    <i class="fas fa-long-arrow-alt-left margin-5px-right d-none d-md-inline-block"></i>
+                                    Geri</a>
+                            </li>
+                            {% if dics.number > 3 %}
+                            <li>
+                                <a href="?page=1">1 </a>
+                            </li>
+                            {% if dics.number > 4 %}
+                            <li>
+                                <a disabled="">...</a></li>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+
+                            {% for num in dics.paginator.page_range %}
+                            {% if dics.number == num %}
+                            <li>
+                                <a style=" background-color: #EEEEEE; color: #1e1e1e;" class="btn btn-info mb-4"
+                                    href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                            {% elif num > dics.number|add:'-3' and num < dics.number|add:'3' %}
+                            <li>
+                                <a href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if dics.has_next %}
+                            {% if dics.number < dics.paginator.num_pages|add:'-3' %}
+                            <li>
+                                <a disabled="">...</a>
+                            </li>
+                            <li>
+                                <a href="?page={{ dics.paginator.num_pages }}">{{ dics.paginator.num_pages }}</a>
+                            </li>
+                            {% elif dics.number < dics.paginator.num_pages|add:'-2' %}
+
+                            <li>
+                                <a href="?page={{ dics.paginator.num_pages }}">{{ dics.paginator.num_pages }}</a>
+                            </li>
+                            {% endif %}
+
+                            <li>
+                                <a href="?page={{ dics.next_page_number }}"> İleri <i class="fas fa-long-arrow-alt-right margin-5px-left d-none d-md-inline-block"></i></a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- end pagination -->
+
+
             </main>
 
 
             {% include "aside.html" %}
+
         </div>
     </div>
 </section>

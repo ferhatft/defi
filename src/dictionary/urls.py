@@ -1,12 +1,10 @@
 from django.urls import path, include
 
-from dictionary.views import dictionary,all_dictionary,dictionarydetail,dictionary_update,dictionary_delete,dictionary_create,dictionary_report,dic_upwote,dic_dawnvote
+from dictionary.views import dictionary,dictionarydetail,dictionary_update,dictionary_delete,dictionary_create,dictionary_report,dic_upwote,dic_dawnvote
 
 
 urlpatterns = [
-    path('', dictionary, name="dictionary"),
-    path('all/', all_dictionary, name="all_dictionary"),
-    
+    path('', dictionary, name="dictionary"),    
     path('detail/<str:cats>/', dictionarydetail, name= "dictionarydetail"),
     
     path('update/<slug:slug>/', dictionary_update, name= "dictionary_update"),

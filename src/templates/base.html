@@ -117,60 +117,38 @@
                             </li>
                             <!-- end menu item -->
                             <!-- Defisözlük -->
-                            <li class="dropdown simple-dropdown"><a href="{{dic_url}}">Defisözlük</a><i
-                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
-                                    aria-hidden="true"></i>
+                            <li class="dropdown simple-dropdown"><a href="{{dic_url}}">Defisözlük</a>
                             </li>
                             <!-- Defibilgi -->
-                            <li class="dropdown simple-dropdown"><a href="{{inf_url}}">Defibilgi</a><i
-                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
-                                    aria-hidden="true"></i>
-                                <!-- start sub menu -->
-
-
+                            <li class="dropdown simple-dropdown"><a href="{{inf_url}}">Defibilgi</a>
                                 {% if 'bilgi' in perms %}
                                 {% if 'bilgi.add_i̇nformationmodel' in perms %}
-
                                 <ul class="dropdown-menu" role="menu">
-
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href=" {{inf_create_url}} ">Yeni Gönderi<i
                                                 class="fas fa-angle-right"></i></a> </li>
-
-
                                 </ul>
                                 {% endif %}
                                 {% endif %}
-
                             </li>
                             <!-- Defihaber -->
-                            <li class="dropdown simple-dropdown"><a href="{{news_url}}">Defihaber</a><i
-                                    class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
-                                    aria-hidden="true"></i>
-                                <!-- start sub menu -->
-
-
+                            <li class="dropdown simple-dropdown"><a href="{{news_url}}">Defihaber</a>
                                 {% if 'haber' in perms %}
                                 {% if 'haber.add_newsmodel' in perms %}
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href=" {{new_create_url}} ">Haber Ekle<i class="fas fa-angle-right"></i></a>
                                     </li>
-
                                 </ul>
                                 {% endif %}
                                 {% endif %}
                             </li>
-
-
-                            <li class="dropdown simple-dropdown"><a href="#">Hesabım</a><i
+                            <li class="dropdown simple-dropdown"><a href="/accounts/profile/">Hesabım</a><i
                                     class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown"
                                     aria-hidden="true"></i>
                                 <!-- start sub menu -->
                                 <ul class="dropdown-menu" role="menu">
-
                                     {% if request.user.is_authenticated %}
-
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href="/accounts/profile/">Profil</a></li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
@@ -178,20 +156,13 @@
                                     {% else %}
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href="/accounts/login/">Giriş</a>
-
                                     </li>
                                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                             href="/accounts/signup/">Kayıt</a>
-
                                     </li>
-
-
                                     {% endif %}
-
                                 </ul>
                             </li>
-
-
                         </ul>
                     </div>
                 </div>
@@ -201,8 +172,6 @@
                                 class="fab fa-facebook-f" aria-hidden="true"></i></a>
                         <a href="https://twitter.com/" title="Twitter" target="_blank"><i
                                 class="fab fa-twitter"></i></a>
-                        <a href="https://dribbble.com/" title="Dribbble" target="_blank"><i
-                                class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
             </div>
@@ -277,8 +246,8 @@
                             301 The Greenhouse, Custard Factory, London, E2 8DY.</p>
                         <div class="text-small">Email: <a href="mailto:sales@domain.com">sales@domain.com</a></div>
                         <div class="text-small">Phone: +44 (0) 123 456 7890</div>
-                        <a href="contact-us-modern.html"
-                            class="text-small text-uppercase text-decoration-underline">View Direction</a>
+                        <a href="{% url 'iletisim:iletisim' %}"
+                            class="text-small text-uppercase text-decoration-underline">iletişime Geç</a>
                     </div>
                     <!-- end contact information -->
 

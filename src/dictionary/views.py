@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.html import escape
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import DictionaryModel, ReporModel
 from .forms import DictionaryForm, AnswerinlineModelForm, ReportModelForm
 from profiles.models import UserProfile
@@ -35,6 +36,10 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
         dictionaryies = dictionaryies.filter(tags=tag)
     else:
         tag = None
+
+
+
+    # pagination
 
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -99,6 +104,19 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
                 .annotate(num_posts=Count('dictionaryanswers')) \
                 .order_by('-num_posts')[:10]
 
+
+    
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(dictionaryies, 10)
+
+    try:
+        dic = paginator.page(page)
+    except PageNotAnInteger:
+        dic = paginator.page(1)
+    except EmptyPage:
+        dic = paginator.page(paginator.num_pages)
+
     context = {
         'dictionaryies': dictionaryies,
         'dic_by_coms': dic_by_coms,
@@ -109,40 +127,41 @@ def dictionary(request, tag_slug=None, *args, **kwargs):
         'scrollid': scrollid,
         'qlist':qlist,
         'qsort':qsort,
+        'dics':dic,
     }
 
     return render(request, "dictionary.html", context)
 
 
-def all_dictionary(request, tag_slug=None, *args, **kwargs):
+# def all_dictionary(request, tag_slug=None, *args, **kwargs):
 
-    dictionaryies = DictionaryModel.objects.all()
+#     dictionaryies = DictionaryModel.objects.all()
 
-    all_dic_by_coms = DictionaryModel.objects.all() \
-        .annotate(num_posts=Count('dictionaryanswers')) \
-        .order_by('-num_posts')
+#     all_dic_by_coms = DictionaryModel.objects.all() \
+#         .annotate(num_posts=Count('dictionaryanswers')) \
+#         .order_by('-num_posts')
 
-    common_tags = DictionaryModel.tags.most_common()[:20]
-    try:
-        userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
-        userprofile = userprofiletuple[0]
-    except:
-        userprofile = 'AnonymousUser'
-    if tag_slug:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        dictionaryies = dictionaryies.filter(tags=tag)
-    else:
-        tag = None
+#     common_tags = DictionaryModel.tags.most_common()[:20]
+#     try:
+#         userprofiletuple = UserProfile.objects.get_or_create(user=request.user)
+#         userprofile = userprofiletuple[0]
+#     except:
+#         userprofile = 'AnonymousUser'
+#     if tag_slug:
+#         tag = get_object_or_404(Tag, slug=tag_slug)
+#         dictionaryies = dictionaryies.filter(tags=tag)
+#     else:
+#         tag = None
 
-    context = {
-        'dictionaryies': dictionaryies,
-        'all_dic_by_coms': all_dic_by_coms,
-        'common_tags': common_tags,
-        'userprofile': userprofile,
-        'tag': tag,
-    }
+#     context = {
+#         'dictionaryies': dictionaryies,
+#         'all_dic_by_coms': all_dic_by_coms,
+#         'common_tags': common_tags,
+#         'userprofile': userprofile,
+#         'tag': tag,
+#     }
 
-    return render(request, "dictionary.html", context)
+#     return render(request, "dictionary.html", context)
 
 
 def dictionarydetail(request, cats):

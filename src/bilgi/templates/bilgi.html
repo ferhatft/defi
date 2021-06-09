@@ -30,7 +30,7 @@
                             <div class="post-details">
                                 <span
                                     class="post-author text-extra-small text-medium-gray text-uppercase d-block margin-10px-bottom sm-margin-5px-bottom">{{post.created_date.date}}|
-                                    <a href="blog-masonry.html" class="text-medium-gray"> {{post.author}} </a>
+                                    <a href="{{post.get_absolute_url}}" class="text-medium-gray"> {{post.author}} </a>
                                     Taradından</span>
                                 <a href="{{post.get_absolute_url}}"
                                     class="post-title text-medium text-extra-dark-gray width-90 d-block md-width-100">

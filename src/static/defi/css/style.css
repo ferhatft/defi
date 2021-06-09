@@ -6933,6 +6933,7 @@ textarea.input-bg {
     position: sticky !important;
     top: 65px;
 }
+
 .position-right {
     right: 0 !important;
 }
@@ -18010,6 +18011,11 @@ aside .latest-post li figure {
 }
 
 
-.bg-gift{
-    background-image: url( ../images/giphy.gif);
+.bg-gift {
+    background: url(../images/giphy.gif);
+    background-repeat: repeat;
+    background-attachment: fixed;
+    -o-background-size: inherit;
+    -moz-background-size: inherit;
+    -webkit-background-size: inherit;
 }
