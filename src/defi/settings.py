@@ -190,15 +190,12 @@ EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'tugrul.tf51@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'ccmzmserrhvyidqx'
+EMAIL_HOST_PASSWORD = ''
 
 EMAIL_USE_TLS = True
 
 # EMAIL_USE_SSL = False
 
-DEFAULT_TO_EMAIL = 'fferhattugrul@gmail.com'
-
-DEFAULT_FROM_EMAIL = 'tugrul.tf51@gmail.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # new
 
